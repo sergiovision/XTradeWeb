@@ -1,0 +1,37 @@
+<script src="ace-builds/src-min/ace.js"></script>
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-body">
+        <div class="options">
+            <p>
+                <dx-button style="margin: 4px"
+                  id="buttonClear"
+                  text="Clear"
+                  type="success"
+                  (click)="ClearLogs()">
+                </dx-button>
+                <dx-button style="margin: 4px"
+                  id="buttonRefresh"
+                  text="Refresh"
+                  type="success"
+                  (click)="RefreshLogs()">
+                </dx-button>
+            </p>
+       </div>
+       <ace-editor [(text)]="text" [options]="options" #editor style="height: 500px; min-height: 200px; width:100%; overflow: auto;"></ace-editor>
+    </div>
+ <!--   <div class="card-footer">
+      <form class="form-inline">
+        <select id="theme" class="form-control form-control-sm" (change)="onThemeChange($event)">
+          <option value="monokai">monokai</option>
+          <option value="eclipse">eclipse</option>
+        </select>
+        <select id="mode" class="form-control form-control-sm" (change)="onModeChange($event)">
+          <option value="markdown">markdown</option>
+          <option value="javascript">javascript</option>
+          <option value="html">html</option>
+        </select>
+      </form>
+    </div> -->
+  </div>
+</div>

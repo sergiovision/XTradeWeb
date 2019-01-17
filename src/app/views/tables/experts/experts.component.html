@@ -1,0 +1,77 @@
+<p>
+  Experts Settings
+</p>
+<dx-data-grid id="exertsContainer"
+    [dataSource]="dataSource"
+    keyExpr="Id"
+    [masterDetail]="{ enabled: true, template: 'detail' }"
+    [showBorders]="true"
+    >
+    <dxo-paging [enabled]="false"></dxo-paging>
+    <dxi-column dataField="Id" width="80"></dxi-column>
+    <dxi-column dataField="Name" width ="120"></dxi-column>
+    <dxi-column dataField="MetaSymbol" width="120"></dxi-column>
+    <dxi-column dataField="Retired" width="80"></dxi-column>
+    <dxi-column dataField="MasterAdviserId"></dxi-column>
+
+    <div *dxTemplate="let experts of 'detail'">
+        <dx-data-grid
+            [dataSource]="experts.data.Advisers"
+            [showBorders]="true"
+            [columnAutoWidth]="true"
+            (onCellClick)="onClickCell($event)">
+                <dxo-paging [enabled]="false"></dxo-paging>
+                <dxi-column dataField="Id" width="80"></dxi-column>
+                <dxi-column dataField="Name" width="180"></dxi-column>
+                <dxi-column dataField="Broker" width="180"></dxi-column>
+                <dxi-column dataField="Symbol" width="120"></dxi-column>
+                <dxi-column dataField="Running" width="80"></dxi-column>
+                <dxi-column dataField="Disabled" width="80"></dxi-column>
+                <dxi-column [width]="100" caption="Update"
+                    cellTemplate="cellTemplateUpdate" [allowFiltering]="false" [allowSorting]="false">
+                    <div *dxTemplate="let data of 'cellTemplateUpdate'">
+                      <dx-button text="Update"></dx-button>
+                    </div>
+                </dxi-column>
+        </dx-data-grid>
+    </div>
+
+    <dxo-summary>
+      <dxi-total-item
+          column="Balance"
+          summaryType="sum"
+          valueFormat="currency">
+          </dxi-total-item>
+    </dxo-summary>
+</dx-data-grid>
+
+
+<dx-popup
+class="popup"
+[width]="1200"
+[height]="650"
+[showTitle]="true"
+title="Update Experts State"
+[dragEnabled]="false"
+[closeOnOutsideClick]="false"
+[(visible)]="popupVisible">
+
+<dx-scroll-view #scrollView
+        id="scrollview"
+        scrollByContent="true"
+        showScrollbar="always">
+<div id="form-container">
+    <dx-button [(visible)]="popupVisible" text="Update" (onClick)="updateAdviser()"></dx-button>
+    <dx-form  id="form"
+    [(formData)]="adviserState"
+    labelLocation="top"
+    [minColWidth]="650"
+    colCount="auto"
+    [width]="1100"
+    [colCountByScreen]="colCountByScreen"
+    [screenByWidth]="screen"
+    [(visible)]="popupVisible"></dx-form>
+  </div>
+</dx-scroll-view>
+
+</dx-popup>

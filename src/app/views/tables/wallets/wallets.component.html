@@ -1,0 +1,73 @@
+<p>
+  Wallets
+</p>
+<dx-data-grid id="walletsContainer"
+    [dataSource]="dataSource"
+    keyExpr="Id"
+    [masterDetail]="{ enabled: true, template: 'detail' }"
+    [showBorders]="true"
+    >
+
+    <dxo-paging [enabled]="false"></dxo-paging>
+    <dxi-column dataField="Name"></dxi-column>
+    <dxi-column dataField="Balance" [allowSorting]="true" format="currency"></dxi-column>
+
+    <div *dxTemplate="let wallet of 'detail'">
+        <!-- <div class="master-detail-caption">{{wallet.data.Name + " Accounts"}}</div> -->
+        <dx-data-grid
+            [dataSource]="wallet.data.Accounts"
+            [showBorders]="true"
+            [columnAutoWidth]="true"
+            (onCellClick)="onClickCell($event)">
+                <dxo-paging [enabled]="false"></dxo-paging>
+                <dxi-column dataField="Number" width="80"></dxi-column>
+                <dxi-column dataField="Description"></dxi-column>
+                <dxi-column dataField="Equity" width="0"></dxi-column>
+                <dxi-column dataField="Balance" width="80"></dxi-column>
+                <dxi-column dataField="CurrencyStr" caption="Curr" width="40"></dxi-column>
+                <dxi-column [width]="100" caption="Update"
+                    cellTemplate="cellTemplateUpdate" [allowFiltering]="false" [allowSorting]="false">
+                    <div *dxTemplate="let data of 'cellTemplateUpdate'">
+                      <dx-button text="Update"></dx-button>
+                    </div>
+                </dxi-column>
+        </dx-data-grid>
+    </div>
+
+    <dxo-summary>
+      <dxi-total-item
+          column="Balance"
+          summaryType="sum"
+          valueFormat="currency">
+          </dxi-total-item>
+    </dxo-summary>
+</dx-data-grid>
+<dx-popup
+class="popup"
+[width]="300"
+[height]="250"
+[showTitle]="true"
+title="Update Account State"
+[dragEnabled]="false"
+[closeOnOutsideClick]="false"
+[(visible)]="popupVisible">
+
+<div class="dx-field" >
+    <div class="dx-field-label">Balance</div>
+      <div class="dx-field-value">
+          <dx-text-box id="popupBalance" [(visible)]="popupVisible" mode="currency" [(value)]="currentState.Balance">
+          </dx-text-box>
+      </div>
+      <div class="dx-field-label">Comment</div>
+      <div class="dx-field-value">
+          <dx-text-box [(visible)]="popupVisible" [(value)]="currentState.Comment">
+          </dx-text-box>
+      </div>
+      <div class="dx-field-label">Formula</div>
+      <div class="dx-field-value">
+          <dx-text-box [(visible)]="popupVisible" [(value)]="currentState.Formula">
+          </dx-text-box>
+      </div>
+    </div>
+    <dx-button [(visible)]="popupVisible" text="Update" (onClick)="updateAccountState()"></dx-button>
+</dx-popup>

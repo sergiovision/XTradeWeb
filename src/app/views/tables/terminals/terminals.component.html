@@ -1,0 +1,30 @@
+<p>
+  Terminals
+</p>
+<div class="options">
+  <div class="option">
+    <dx-button id="button" text="Generate Deploy Scripts" (onClick)="genDeployScripts()">
+    </dx-button>
+    <!--
+    <dx-check-box
+        [(value)]="showDisabled"
+        text="Show Disabled">
+    </dx-check-box> -->
+  </div>
+</div>
+<dx-data-grid id="terminalsContainer"
+    [dataSource]="dataSource"
+    keyExpr="Id"
+    [showBorders]="true"
+    (onCellClick)="onClickCell($event)">
+    <dxi-column dataField="Broker"></dxi-column>
+    <dxi-column dataField="AccountNumber"></dxi-column>
+    <dxi-column dataField="Disabled" [allowSorting]="true"></dxi-column>
+    <dxi-column dataField="Stopped" [allowSorting]="true"></dxi-column>
+    <dxi-column [width]="160" caption="Deploy"
+      cellTemplate="cellTemplateDeploy" [allowFiltering]="false" [allowSorting]="false">
+    </dxi-column>
+    <div *dxTemplate="let data of 'cellTemplateDeploy'">
+      <dx-button text="Deploy"></dx-button>
+    </div>
+</dx-data-grid>
