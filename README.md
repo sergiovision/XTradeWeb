@@ -15,7 +15,9 @@ comment line: // module.exports = require("stream");
 
 
 5) for production build edit base host url in this file /src/assets/config.json 
-  "baseURL.Prod": "http://<proper host>:2013",
+
+  "baseURL.Prod": "http://host_name:2013",
+  
   "baseURL.Dev": "http://localhost:2013",
 
 To build production version run command
