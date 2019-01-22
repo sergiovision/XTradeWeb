@@ -11,17 +11,17 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'capital',
-        component: CapitalComponent,
-        data: {
-          title: 'Capital'
-        }
-      },
-      {
         path: 'symbols',
         component: SymbolsComponent,
         data: {
           title: 'Instruments'
+        }
+      },
+      {
+        path: 'capital',
+        component: CapitalComponent,
+        data: {
+          title: 'Capital'
         }
       }
 

@@ -97,14 +97,14 @@ export const navItems = [
     icon: 'icon-pie-chart',
     children: [
       {
-        name: 'Capital',
-        url: '/stat/capital',
-        icon: 'icon-pie-chart',
-      },
-      {
         name: 'Instruments',
         url: '/stat/symbols',
         icon: 'icon-chart',
+      },
+      {
+        name: 'Capital',
+        url: '/stat/capital',
+        icon: 'icon-pie-chart',
       }
     ]
   },
