@@ -2,6 +2,8 @@
 XTrade Web is an Angular web frontend application to manage XTrade Server. 
 It is a web UI Admin console application.
 
+Application features list is in ***Readme.pdf*** file in root folder.
+
 How to build/run:
 1) npm install
 2) Edit the following file:
