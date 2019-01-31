@@ -1,0 +1,71 @@
+<div class="card" id="mainPerformanceChart">
+  <dx-chart
+  id="chartPerformance"
+  title="Performance Daily in USD"
+  [dataSource]="dataSource"
+  defaultPane="bottomPane"
+  [customizePoint]="customizePoint"
+  [customizeLabel]="customizeLabel"
+  >
+
+  <dxi-series valueField="InvestingChange" type="bar" name="Trading Result" pane="topPane" color='#cc0000'
+  ></dxi-series>
+  <dxi-series valueField="CheckingChange"  type="bar" name="Total Result"  color='#6666ff'></dxi-series>
+  <dxo-common-series-settings #seriesSettings
+  argumentField="X"
+  hoverMode="allArgumentPoints"
+  selectionMode="allArgumentPoints"
+  >
+  <dxo-label [visible]="true">
+  </dxo-label>
+</dxo-common-series-settings>
+<dxi-pane name="topPane" ></dxi-pane>
+<dxi-pane name="bottomPane" ></dxi-pane>
+
+  <dxi-value-axis pane="bottomPane" [visible]="true">
+        <dxo-title text="Total, $"></dxo-title>
+  </dxi-value-axis>
+  <dxi-value-axis pane="topPane" [visible]="true">
+  <dxo-title text="Trading, $"></dxo-title>
+</dxi-value-axis>
+
+  <dxo-legend
+      verticalAlignment="bottom"
+      horizontalAlignment="center">
+  </dxo-legend>
+  <dxo-export [enabled]="true"></dxo-export>
+  <dxo-tooltip
+  [enabled]="true"
+  pane = "topPane"
+  [customizeTooltip]="customizeTooltip">
+  </dxo-tooltip>
+  <dxo-tooltip
+  [enabled]="true"
+  pane = "bottomPane"
+  [customizeTooltip]="customizeTooltip">
+  </dxo-tooltip>
+
+</dx-chart>
+</div>
+<div class="action">
+  <dx-select-box
+  horizontalAlignment="left"
+  id="selectMonth"
+  [items]="Months"
+  [width]="150"
+  [value]="currentMonth"
+  valueExpr="id"
+  displayExpr="name"
+  (onValueChanged)="onValueChanged($event)"
+  ></dx-select-box>
+</div>
+<dx-load-panel
+    #loadPanel
+    shadingColor="rgba(0,0,0,0.4)"
+    [position]="{ of: '#mainPerformanceChart' }"
+    [(visible)]="loadingVisible"
+    [showIndicator]="true"
+    [showPane]="true"
+    [shading]="true"
+    [closeOnOutsideClick]="false">
+</dx-load-panel>

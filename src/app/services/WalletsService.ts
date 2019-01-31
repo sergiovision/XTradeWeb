@@ -38,6 +38,17 @@ export class Account {
   Lastupdate: Date;
 }
 
+export class TimeStat {
+  Date: Date;
+  X: number;
+  Period: number;
+  CheckingValue: number;
+  InvestingValue: number;
+  CheckingChange: number;
+  InvestingChange: number;
+}
+
+
 @Injectable()
 export class WalletsService extends BaseService {
     constructor(http: HttpClient) { super(http); }
@@ -68,8 +79,13 @@ export class WalletsService extends BaseService {
     public getRange(fromDate: string, toDate: string) {
        const url = '/api/wallets/GetRange?id=0&fromDate=' + fromDate + '&toDate=' + toDate;
        // notify(url);
-       console.log(url);
+       // console.log(url);
        return super.getAll(url);
+    }
+
+    public getPerformance(month: number, period: number) {
+      const url = '/api/wallets/Performance?month=' + month + '&period=' + period;
+      return super.getAll(url);
     }
 
 }

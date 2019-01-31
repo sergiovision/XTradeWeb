@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CapitalComponent } from './capital/capital.component';
 import { SymbolsComponent } from './symbols/symbols.component';
+import { PerformanceComponent } from './performance/performance.component';
 
 const routes: Routes = [
   {
@@ -18,13 +19,19 @@ const routes: Routes = [
         }
       },
       {
+        path: 'performance',
+        component: PerformanceComponent,
+        data: {
+          title: 'Performance'
+        }
+      },
+      {
         path: 'capital',
         component: CapitalComponent,
         data: {
           title: 'Capital'
         }
       }
-
     ]
   }
 ];

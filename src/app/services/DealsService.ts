@@ -35,6 +35,7 @@ export class PositionInfo {
   ProfitStopsPercent: number;
   ProfitBricks: number;
   Profit: number;
+  Role: string;
 }
 
 export class MetaSymbolStat {
@@ -64,7 +65,6 @@ export class DealsService extends BaseService {
 
   public closePosition(magic: number, ticket: number) {
     const uri: string = '/api/deals/ClosePosition?magic=' + magic + '&ticket=' + ticket;
-    // console.log(uri);
     return super.getAll(uri);
   }
 

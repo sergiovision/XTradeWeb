@@ -10,9 +10,12 @@
       [repaintChangesOnly]="true" [highlightChanges]="true" (onCellClick)="onClickCell($event)">
       <dxo-paging [enabled]="true"></dxo-paging>
       <dxo-selection mode="single"></dxo-selection>
-
+      <!--
       <dxi-column dataField="Ticket" [allowSorting]="true">
       </dxi-column>
+      -->
+      <dxi-column dataField="Role" caption="Role" [allowSorting]="true" groupIndex="0"></dxi-column>
+
       <dxi-column dataField="AccountName" caption="Account Type" [allowSorting]="true"></dxi-column>
       <dxi-column dataField="Symbol" [allowSorting]="true" cellTemplate="symbolCellTemplate" sortOrder="asc">
       </dxi-column>
@@ -42,12 +45,12 @@
         <span class="current-value">{{cell.text}}</span>
       </div>
 
-      <!--
-            <div *dxTemplate="let cell of 'changeCellTemplate'" [class.inc]="cell.data.change > 0" [class.dec]="cell.data.change < 0">
-                <span class="current-value">{{cell.text}}</span>
-                <span class="arrow"></span>
-                <span class="diff">{{cell.data.percentChange.toFixed(2)}}%</span>
-            </div>
+<!--
+      <div *dxTemplate="let cell of 'changeCellTemplate'" [class.inc]="cell.data.change > 0" [class.dec]="cell.data.change < 0">
+          <span class="current-value">{{cell.text}}</span>
+          <span class="arrow"></span>
+          <span class="diff">{{cell.data.percentChange.toFixed(2)}}%</span>
+      </div>
 -->
       <dxo-summary>
         <dxi-total-item column="Ticket" summaryType="count">
@@ -58,7 +61,7 @@
 
     </dx-data-grid>
   </div>
-  <!--
+<!--
     <div class="card-body">
         <dx-data-grid id="positionsContainer"
               [dataSource]="dataSource"
@@ -85,5 +88,6 @@
                 </dxi-total-item>
               </dxo-summary>
           </dx-data-grid>
-      </div> -->
+      </div>
+-->
 </div>

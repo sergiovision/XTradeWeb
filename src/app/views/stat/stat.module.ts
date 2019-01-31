@@ -1,3 +1,4 @@
+import { PerformanceComponent } from './performance/performance.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DxChartModule, DxSelectBoxModule, DxLoadPanelModule } from 'devextreme-angular';
@@ -23,7 +24,8 @@ import { SymbolsComponent } from './symbols/symbols.component';
   ],
   declarations: [
       CapitalComponent,
-      SymbolsComponent
+      SymbolsComponent,
+      PerformanceComponent
   ]
 })
 export class StatModule { }

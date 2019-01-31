@@ -1,8 +1,7 @@
 import { NgModule, Component } from '@angular/core';
 import { DxChartModule, DxSelectBoxModule, DxLoadPanelModule } from 'devextreme-angular';
-
-import { SymbolsComponent } from './symbols.component';
-import { DealsService} from '../../../services/DealsService';
+import { PerformanceComponent } from './performance.component';
+import { WalletsService} from '../../../services/WalletsService';
 
 @NgModule({
   imports: [
@@ -11,8 +10,8 @@ import { DealsService} from '../../../services/DealsService';
     DxLoadPanelModule
   ],
   providers: [
-    DealsService
+    WalletsService
   ]
 })
-export class SymbolsModule { }
+export class PerformanceModule { }
 

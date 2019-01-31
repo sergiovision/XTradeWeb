@@ -102,6 +102,11 @@ export const navItems = [
         icon: 'icon-chart',
       },
       {
+        name: 'Performance',
+        url: '/stat/performance',
+        icon: 'icon-chart',
+      },
+      {
         name: 'Capital',
         url: '/stat/capital',
         icon: 'icon-pie-chart',

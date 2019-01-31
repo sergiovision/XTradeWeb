@@ -13,7 +13,7 @@ export class SelectAccountType {
   styleUrls: ['symbols.component.scss']
 })
 export class SymbolsComponent implements OnInit  {
-  dataSource: MetaSymbolStat;
+  dataSource: MetaSymbolStat[];
   currentAccountType: number;
   loadingVisible: boolean;
 
