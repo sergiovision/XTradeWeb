@@ -24,7 +24,8 @@
                 <dxi-column dataField="Description"></dxi-column>
                 <dxi-column dataField="Equity" width="0"></dxi-column>
                 <dxi-column dataField="Balance" width="80"></dxi-column>
-                <dxi-column dataField="CurrencyStr" caption="Curr" width="40"></dxi-column>
+                <dxi-column dataField="CurrencyStr" caption="Curr" width="80"></dxi-column>
+                <dxi-column dataField="Typ" caption="Type" width="100"></dxi-column>
                 <dxi-column [width]="100" caption="Update"
                     cellTemplate="cellTemplateUpdate" [allowFiltering]="false" [allowSorting]="false">
                     <div *dxTemplate="let data of 'cellTemplateUpdate'">

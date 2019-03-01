@@ -37,7 +37,7 @@ export class WalletsComponent implements OnInit {
 
    public onClickCell(e) {
      const id: number = e.columnIndex;
-     if (id === 5) {
+     if (id === 6) {
        const account: Account = e.data;
        this.currentState = new AccountState();
        this.currentState.Balance = account.Balance;

@@ -4,6 +4,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { DealsService} from './../../services/DealsService';
+import { JobsService} from './../../services/JobsService';
 import {
       DevExtremeModule,
       DxSelectBoxModule,
@@ -40,7 +41,8 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     DxPopupModule
   ],
   providers: [
-    DealsService
+    DealsService,
+    JobsService
   ],
 
   declarations: [ DashboardComponent ]

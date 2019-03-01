@@ -3,19 +3,28 @@ import {
   OnInit,
   ViewChild
 } from '@angular/core';
+
 import 'jquery';
 // https://github.com/PaulGiletich/ms-signalr-client
 import 'ms-signalr-client-jquery-3';
+
 import {
   Router
 } from '@angular/router';
+
 import {
   UserToken
 } from '../../models/UserToken';
+
 import {
   DealsService,
   PositionInfo
 } from '../../services/DealsService';
+
+import {
+  JobsService
+} from '../../services/JobsService';
+
 import CustomStore from 'devextreme/data/custom_store';
 import notify from 'devextreme/ui/notify';
 import {
@@ -35,19 +44,21 @@ export class DashboardComponent implements OnInit {
   // http://jasonwatmore.com/post/2018/10/29/angular-7-user-registration-and-login-example-tutorial
   @ViewChild('positionsContainer') positionsContainer: DxDataGridComponent;
   dataSource: any;
+  dealsSource: any;
   connectionStarted: boolean;
   popupVisible = false;
   currentUser: UserToken;
   users: UserToken[] = [];
   ds: DealsService;
-  // private jQuery = $;
+  js: JobsService;
 
   private connection: any;
   private proxy: any;
   protected store: CustomStore;
 
-  constructor(public deals: DealsService) {
+  constructor(public deals: DealsService, public jobs: JobsService) {
     this.ds = deals;
+    this.js = jobs;
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.connectionStarted = false;
   }
@@ -70,6 +81,7 @@ export class DashboardComponent implements OnInit {
         type: 'remove',
         key: data
       }]);
+      this.UpdateDeals();
       this.positionsContainer.instance.repaint();
     });
 
@@ -93,12 +105,24 @@ export class DashboardComponent implements OnInit {
       .done(() => {
         // console.log('Connected to terminalsHub: ' + this.connection.id);
         this.dataSource = this.store;
+        this.UpdateDeals();
         this.connectionStarted = true;
       })
       .fail(() => {
         notify('Could not connect to Terminals Hub');
       });
 
+  }
+
+  public UpdateDeals() {
+    this.deals.getTodayDeals().subscribe(
+      data => {
+        this.dealsSource = data;
+      },
+      error => {
+          const message = JSON.stringify( error.error) + '\n' + error.statusText;
+          console.log(message);
+      });
   }
 
   public onClickCell(e) {
@@ -119,6 +143,17 @@ export class DashboardComponent implements OnInit {
 
   public refreshAll() {
     this.ds.refreshAll().subscribe(
+      data => {
+        window.location.reload();
+      },
+      error => {
+        const message = JSON.stringify(error.error) + '\n' + error.statusText;
+        notify(message);
+      });
+  }
+
+  public syncAll() {
+    this.js.runJob('SYSTEM', 'TerminalsSyncJob').subscribe(
       data => {
         window.location.reload();
       },

@@ -23,6 +23,11 @@ export class AccountState {
     Formula: string;
 }
 
+enum AccountType {
+  Checking,
+  Investment
+}
+
 export class Account {
   Id: number;
   Description: string;
@@ -36,6 +41,7 @@ export class Account {
   CurrencyStr: string;
   Number: number;
   Lastupdate: Date;
+  Typ: AccountType;
 }
 
 export class TimeStat {

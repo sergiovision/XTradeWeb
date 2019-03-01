@@ -59,6 +59,10 @@ export class DealsService extends BaseService {
     return super.getAll('/api/deals');
   }
 
+  public getTodayDeals() {
+    return super.getAll('/api/deals/GetToday');
+  }
+
   public getStat(accountType: number) {
     return super.getAll('/api/deals/MetaSymbolStatistics?type=' + accountType);
   }

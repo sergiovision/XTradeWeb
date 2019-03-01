@@ -31,18 +31,4 @@ export class DealsComponent implements OnInit {
     this.loadData();
   }
 
-   /*
-   public onClickCell(e) {
-     const id: number = e.columnIndex;
-     if (id === 5) {
-       const account: Account = e.data;
-       this.currentState = new AccountState();
-       this.currentState.Balance = account.Balance;
-       this.currentState.AccountId = account.Id;
-       this.popupVisible = true;
-       return;
-     }
-   } */
-
-
 }

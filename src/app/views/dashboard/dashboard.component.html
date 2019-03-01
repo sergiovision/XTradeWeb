@@ -1,27 +1,29 @@
-<div class="animated fadeIn">
+
   <div class="options">
     <div class="option">
       <dx-button id="button" text="Refresh All" (onClick)="refreshAll()">
       </dx-button>
+      <dx-button id="buttonSync" text="Sync" (onClick)="syncAll()">
+      </dx-button>
     </div>
   </div>
-  <div ng-if="connectionStarted">
+  <div>
     <dx-data-grid #positionsContainer id="positionsContainer" [dataSource]="dataSource" [showBorders]="true"
+      [columnHidingEnabled]="true"
       [repaintChangesOnly]="true" [highlightChanges]="true" (onCellClick)="onClickCell($event)">
       <dxo-paging [enabled]="true"></dxo-paging>
       <dxo-selection mode="single"></dxo-selection>
-      <!--
-      <dxi-column dataField="Ticket" [allowSorting]="true">
+      <dxi-column dataField="Ticket" [allowSorting]="true" [hidingPriority]="2">
       </dxi-column>
-      -->
       <dxi-column dataField="Role" caption="Role" [allowSorting]="true" groupIndex="0"></dxi-column>
 
       <dxi-column dataField="AccountName" caption="Account Type" [allowSorting]="true"></dxi-column>
       <dxi-column dataField="Symbol" [allowSorting]="true" cellTemplate="symbolCellTemplate" sortOrder="asc">
       </dxi-column>
 
-      <dxi-column dataField="Lots" [allowSorting]="true"></dxi-column>
-      <dxi-column dataField="ProfitStopsPercent" caption="%" format="#0.##'%'" [allowSorting]="true" cellTemplate="priceCellTemplate">
+      <dxi-column dataField="Lots" [allowSorting]="true" [hidingPriority]="1"></dxi-column>
+      <dxi-column dataField="ProfitStopsPercent" caption="%" format="#0.##'%'" [allowSorting]="true" cellTemplate="priceCellTemplate"
+                  [hidingPriority]="3">
         <dxo-format type="fixedPoint" [precision]="2"></dxo-format>
       </dxi-column>
       <dxi-column dataField="Profit" caption="$" format="#0.##" [allowSorting]="true" cellTemplate="priceCellTemplate">
@@ -29,7 +31,7 @@
       </dxi-column>
 
       <dxi-column [width]="160" caption="Commands" cellTemplate="cellTemplateClose" [allowFiltering]="false"
-        [allowSorting]="false">
+        [allowSorting]="false" [hidingPriority]="4">
       </dxi-column>
 
       <div *dxTemplate="let data of 'cellTemplateClose'">
@@ -44,50 +46,32 @@
         <span class="arrow"></span>
         <span class="current-value">{{cell.text}}</span>
       </div>
-
-<!--
-      <div *dxTemplate="let cell of 'changeCellTemplate'" [class.inc]="cell.data.change > 0" [class.dec]="cell.data.change < 0">
-          <span class="current-value">{{cell.text}}</span>
-          <span class="arrow"></span>
-          <span class="diff">{{cell.data.percentChange.toFixed(2)}}%</span>
-      </div>
--->
-      <dxo-summary>
-        <dxi-total-item column="Ticket" summaryType="count">
-        </dxi-total-item>
-        <dxi-total-item column="Profit" summaryType="sum" valueFormat="currency">
-        </dxi-total-item>
-      </dxo-summary>
-
     </dx-data-grid>
   </div>
-<!--
-    <div class="card-body">
-        <dx-data-grid id="positionsContainer"
-              [dataSource]="dataSource"
-              keyExpr="_ticket"
-              [showRowLines]="true"
-              [showColumnLines]="false"
-              [showBorders]="true">
-              <dxo-paging [enabled]="true" [pageSize]="50"></dxo-paging>
-              <dxi-column dataField="_symbol" [allowSorting]="true" [groupIndex]="0" ></dxi-column>
-              <dxi-column dataField="_account" [allowSorting]="true"></dxi-column>
-              <dxi-column dataField="_type" [allowSorting]="true"></dxi-column>
-              <dxi-column dataField="_magic" [allowSorting]="true" ></dxi-column>
-              <dxi-column dataField="_ticket" [allowSorting]="true" ></dxi-column>
-              <dxi-column dataField="_opentime" [allowSorting]="true" format="datetime"></dxi-column>
-              <dxi-column dataField="_lots" [allowSorting]="true"></dxi-column>
-              <dxi-column dataField="_vsl" [allowSorting]="true" format="decimal"></dxi-column>
-              <dxi-column dataField="_vtp" [allowSorting]="true" format="decimal"></dxi-column>
-              <dxi-column dataField="_profit" [allowSorting]="true"></dxi-column>
-              <dxo-summary>
-                <dxi-total-item
-                    column="`_ticket"
-                    summaryType="count"
-                    valueFormat="number">
-                </dxi-total-item>
-              </dxo-summary>
-          </dx-data-grid>
+  <div>
+    <dx-data-grid #dealsContainer id="dealsContainer"
+
+      [dataSource]="dealsSource"
+      keyExpr="Ticket"
+      [showRowLines]="true"
+      [columnHidingEnabled]="true"
+      [showColumnLines]="false"
+      [height]="500"
+      [showBorders]="true">
+      <dxo-scrolling mode="virtual"></dxo-scrolling>
+      <dxo-paging [enabled]="false"></dxo-paging>
+      <dxi-column dataField="AccountName" [allowSorting]="true" [width]="180" groupIndex="0"></dxi-column>
+      <dxi-column dataField="CloseTime" [allowSorting]="true" format="datetime" [width]="160" [hidingPriority]="3"></dxi-column>
+      <dxi-column dataField="Ticket" [width]="120" [hidingPriority]="1"></dxi-column>
+      <dxi-column dataField="Symbol" [allowSorting]="true" cellTemplate="symbolDealCellTemplate">
+      </dxi-column>
+      <dxi-column dataField="Lots" format="#0.##" [width]="120" [hidingPriority]="2"></dxi-column>
+      <dxi-column dataField="Profit" [allowSorting]="true" [width]="120" format="#0.##"></dxi-column>
+
+      <div *dxTemplate="let cell of 'symbolDealCellTemplate'" [class.inc]="cell.data.Type === 1" [class.dec]="cell.data.Type === 0">
+        <span class="arrow"></span>
+        <span class="current-value">{{cell.text}}</span>
       </div>
--->
-</div>
+    </dx-data-grid>
+
+  </div>
