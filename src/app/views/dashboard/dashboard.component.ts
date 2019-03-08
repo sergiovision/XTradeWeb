@@ -127,9 +127,9 @@ export class DashboardComponent implements OnInit {
 
   public onClickCell(e) {
     const id: number = e.columnIndex;
-    if (id === 6) {
+    if (id === 7) {
       const pos: PositionInfo = e.data;
-      this.ds.closePosition(pos.Magic, pos.Ticket).subscribe(
+      this.ds.closePosition(pos.Account, pos.Ticket).subscribe(
         data => {
           console.log('Position close request sent ticket=' + pos.Ticket);
         },

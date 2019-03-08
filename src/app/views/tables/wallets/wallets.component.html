@@ -5,27 +5,26 @@
     [dataSource]="dataSource"
     keyExpr="Id"
     [masterDetail]="{ enabled: true, template: 'detail' }"
-    [showBorders]="true"
-    >
+    [showBorders]="true">
 
     <dxo-paging [enabled]="false"></dxo-paging>
     <dxi-column dataField="Name"></dxi-column>
     <dxi-column dataField="Balance" [allowSorting]="true" format="currency"></dxi-column>
 
     <div *dxTemplate="let wallet of 'detail'">
-        <!-- <div class="master-detail-caption">{{wallet.data.Name + " Accounts"}}</div> -->
         <dx-data-grid
             [dataSource]="wallet.data.Accounts"
             [showBorders]="true"
             [columnAutoWidth]="true"
-            (onCellClick)="onClickCell($event)">
+            (onCellClick)="onClickCell($event)"
+            >
                 <dxo-paging [enabled]="false"></dxo-paging>
                 <dxi-column dataField="Number" width="80"></dxi-column>
                 <dxi-column dataField="Description"></dxi-column>
                 <dxi-column dataField="Equity" width="0"></dxi-column>
                 <dxi-column dataField="Balance" width="80"></dxi-column>
                 <dxi-column dataField="CurrencyStr" caption="Curr" width="80"></dxi-column>
-                <dxi-column dataField="Typ" caption="Type" width="100"></dxi-column>
+                <dxi-column dataField="Typ" caption="Type" width="100" ></dxi-column>
                 <dxi-column [width]="100" caption="Update"
                     cellTemplate="cellTemplateUpdate" [allowFiltering]="false" [allowSorting]="false">
                     <div *dxTemplate="let data of 'cellTemplateUpdate'">

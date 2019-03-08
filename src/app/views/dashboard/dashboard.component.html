@@ -3,8 +3,9 @@
     <div class="option">
       <dx-button id="button" text="Refresh All" (onClick)="refreshAll()">
       </dx-button>
+      <!--
       <dx-button id="buttonSync" text="Sync" (onClick)="syncAll()">
-      </dx-button>
+      </dx-button> -->
     </div>
   </div>
   <div>
@@ -61,7 +62,7 @@
       <dxo-scrolling mode="virtual"></dxo-scrolling>
       <dxo-paging [enabled]="false"></dxo-paging>
       <dxi-column dataField="AccountName" [allowSorting]="true" [width]="180" groupIndex="0"></dxi-column>
-      <dxi-column dataField="CloseTime" [allowSorting]="true" format="datetime" [width]="160" [hidingPriority]="3"></dxi-column>
+      <dxi-column dataField="CloseTime" [allowSorting]="true" format="datetime" [width]="160" [hidingPriority]="3" sortOrder="desc"></dxi-column>
       <dxi-column dataField="Ticket" [width]="120" [hidingPriority]="1"></dxi-column>
       <dxi-column dataField="Symbol" [allowSorting]="true" cellTemplate="symbolDealCellTemplate">
       </dxi-column>

@@ -8,10 +8,10 @@
     [showBorders]="true"
     >
     <dxo-paging [enabled]="false"></dxo-paging>
-    <dxi-column dataField="Id" width="80"></dxi-column>
-    <dxi-column dataField="Name" width ="120"></dxi-column>
+    <dxi-column dataField="Id" width="80" ></dxi-column>
+    <dxi-column dataField="Name" width ="120" ></dxi-column>
     <dxi-column dataField="MetaSymbol" width="120"></dxi-column>
-    <dxi-column dataField="Retired" width="80"></dxi-column>
+    <dxi-column dataField="Retired" width="80" ></dxi-column>
     <dxi-column dataField="MasterAdviserId"></dxi-column>
 
     <div *dxTemplate="let experts of 'detail'">
@@ -19,13 +19,14 @@
             [dataSource]="experts.data.Advisers"
             [showBorders]="true"
             [columnAutoWidth]="true"
-            (onCellClick)="onClickCell($event)">
+            (onCellClick)="onClickCell($event)"
+            >
                 <dxo-paging [enabled]="false"></dxo-paging>
-                <dxi-column dataField="Id" width="80"></dxi-column>
-                <dxi-column dataField="Name" width="180"></dxi-column>
+                <dxi-column dataField="Id" width="80" ></dxi-column>
+                <dxi-column dataField="Name" width="180" ></dxi-column>
                 <dxi-column dataField="Broker" width="180"></dxi-column>
                 <dxi-column dataField="Symbol" width="120"></dxi-column>
-                <dxi-column dataField="Running" width="80"></dxi-column>
+                <dxi-column dataField="Running" width="80" ></dxi-column>
                 <dxi-column dataField="Disabled" width="80"></dxi-column>
                 <dxi-column [width]="100" caption="Update"
                     cellTemplate="cellTemplateUpdate" [allowFiltering]="false" [allowSorting]="false">

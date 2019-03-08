@@ -19,9 +19,9 @@
     (onCellClick)="onClickCell($event)">
     <dxi-column dataField="Broker"></dxi-column>
     <dxi-column dataField="AccountNumber"></dxi-column>
-    <dxi-column dataField="Disabled" [allowSorting]="true"></dxi-column>
+    <dxi-column dataField="Disabled" [allowSorting]="true" [hidingPriority]="1"></dxi-column>
     <dxi-column dataField="Stopped" [allowSorting]="true"></dxi-column>
-    <dxi-column [width]="160" caption="Deploy"
+    <dxi-column [width]="160" caption="Deploy" [hidingPriority]="2"
       cellTemplate="cellTemplateDeploy" [allowFiltering]="false" [allowSorting]="false">
     </dxi-column>
     <div *dxTemplate="let data of 'cellTemplateDeploy'">
