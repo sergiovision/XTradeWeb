@@ -1,17 +1,18 @@
 
-  <div class="options">
+  <!--
+    <div class="options">
     <div class="option">
       <dx-button id="button" text="Refresh All" (onClick)="refreshAll()">
       </dx-button>
-      <!--
-      <dx-button id="buttonSync" text="Sync" (onClick)="syncAll()">
-      </dx-button> -->
+
     </div>
-  </div>
+  </div> -->
   <div>
     <dx-data-grid #positionsContainer id="positionsContainer" [dataSource]="dataSource" [showBorders]="true"
       [columnHidingEnabled]="true"
-      [repaintChangesOnly]="true" [highlightChanges]="true" (onCellClick)="onClickCell($event)">
+      [repaintChangesOnly]="true" [highlightChanges]="true"
+      (onCellClick)="onClickCell($event)"
+      (onToolbarPreparing)="onToolbarPreparing($event)">
       <dxo-paging [enabled]="true"></dxo-paging>
       <dxo-selection mode="single"></dxo-selection>
       <dxi-column dataField="Ticket" [allowSorting]="true" [hidingPriority]="2">
@@ -47,6 +48,15 @@
         <span class="arrow"></span>
         <span class="current-value">{{cell.text}}</span>
       </div>
+
+      <div *dxTemplate="let data of 'totalStat'">
+        <div>
+          <span [class.inc]="this.stat.TodayGainReal > 0" [class.dec]="this.stat.TodayGainReal < 0">Real: ${{this.stat.TodayGainReal}} </span>
+          <span [class.inc]="this.stat.TodayGainDemo > 0" [class.dec]="this.stat.TodayGainDemo < 0">Demo: ${{this.stat.TodayGainDemo}} </span>
+        </div>
+      </div>
+
+
     </dx-data-grid>
   </div>
   <div>

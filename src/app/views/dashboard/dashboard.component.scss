@@ -18,6 +18,49 @@
   color: #f00;
 }
 
+::ng-deep #positionsContainer .dx-datagrid-header-panel {
+  padding: 0;
+  background-color:lightgray;
+}
+
+::ng-deep #positionsContainer .dx-datagrid-header-panel .dx-toolbar {
+  margin: 0;
+  padding-right: 20px;
+  background-color: transparent;
+}
+
+::ng-deep #positionsContainer .dx-datagrid-header-panel .dx-toolbar-items-container {
+  height: 40px;
+}
+
+::ng-deep #positionsContainer .dx-datagrid-header-panel .dx-toolbar-before .dx-toolbar-item:not(:first-child) {
+  background-color: lightgray;
+}
+
+::ng-deep #positionsContainer .dx-datagrid-header-panel .dx-toolbar-before .dx-toolbar-item:last-child {
+  padding-right: 10px;
+}
+
+::ng-deep #positionsContainer .dx-datagrid-header-panel .dx-selectbox {
+  margin: 5px 10px;
+}
+
+::ng-deep #positionsContainer .dx-datagrid-header-panel .dx-button {
+  margin: 5px 0;
+}
+
+::ng-deep #positionsContainer .informer {
+  height: 70px;
+  width: 130px;
+  text-align: center;
+  color: #fff;
+}
+
+::ng-deep #positionsContainer .count {
+  padding-top: 15px;
+  line-height: 27px;
+  margin: 0;
+}
 
 
 ::ng-deep #positionsContainer .inc .arrow,

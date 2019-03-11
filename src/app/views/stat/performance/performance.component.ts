@@ -106,6 +106,7 @@ export class PerformanceComponent implements OnInit  {
   ngOnInit() {
     const now: Date = new Date();
     this.currentMonth = now.getMonth();
+    currMonth = this.currentMonth;
     this.loadData();
   }
 

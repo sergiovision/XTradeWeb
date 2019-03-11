@@ -18,7 +18,8 @@ import {
 
 import {
   DealsService,
-  PositionInfo
+  PositionInfo,
+  TodayStat
 } from '../../services/DealsService';
 
 import {
@@ -51,6 +52,7 @@ export class DashboardComponent implements OnInit {
   users: UserToken[] = [];
   ds: DealsService;
   js: JobsService;
+  stat: TodayStat;
 
   private connection: any;
   private proxy: any;
@@ -61,6 +63,7 @@ export class DashboardComponent implements OnInit {
     this.js = jobs;
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.connectionStarted = false;
+    this.stat = new TodayStat();
   }
 
   ngOnInit() {
@@ -123,13 +126,22 @@ export class DashboardComponent implements OnInit {
           const message = JSON.stringify( error.error) + '\n' + error.statusText;
           console.log(message);
       });
+
+    this.deals.getTodayStat().subscribe(
+        data => {
+          this.stat = data;
+        },
+        error => {
+            const message = JSON.stringify( error.error) + '\n' + error.statusText;
+            console.log(message);
+        });
   }
 
   public onClickCell(e) {
     const id: number = e.columnIndex;
     if (id === 7) {
       const pos: PositionInfo = e.data;
-      this.ds.closePosition(pos.Account, pos.Ticket).subscribe(
+      this.ds.closePosition(pos.Account, pos.Magic, pos.Ticket).subscribe(
         data => {
           console.log('Position close request sent ticket=' + pos.Ticket);
         },
@@ -162,5 +174,21 @@ export class DashboardComponent implements OnInit {
         notify(message);
       });
   }
+
+  onToolbarPreparing(e) {
+    e.toolbarOptions.items.unshift({
+        location: 'before',
+        template: 'totalStat'
+    },
+    {
+      location: 'after',
+      widget: 'dxButton',
+      options: {
+          width: 120,
+          text: 'Refresh All',
+          onClick: this.refreshAll.bind(this)
+      }}
+      );
+}
 
 }
