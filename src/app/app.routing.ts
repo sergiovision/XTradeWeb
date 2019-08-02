@@ -61,11 +61,7 @@ export const routes: Routes = [
       title: 'Home'
     },
     children: [
-       {
-        path: 'base',
-          loadChildren: './views/base/base.module#BaseModule'
-       },
-       {
+      {
         path: 'logs',
         canActivate: [AuthGuard],
         loadChildren: './views/logs/logs.module#LogsModule'

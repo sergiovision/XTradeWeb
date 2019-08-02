@@ -1,6 +1,6 @@
 {
-  "baseURL.Prod": "http://localhost:2013",
-  "baseURL.Dev": "http://localhost:2013",
+  "baseURL.Prod": "https://www.sergego.com",
+  "baseURL.Dev": "http://VMSERG:2013",
   "dateFormat": "yyyy-MM-dd'T'HH:mm:ss'Z'",
   "shortDateFormat": "yyyy-MM-dd"
 }

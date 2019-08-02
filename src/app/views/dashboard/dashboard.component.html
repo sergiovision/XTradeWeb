@@ -1,12 +1,3 @@
-
-  <!--
-    <div class="options">
-    <div class="option">
-      <dx-button id="button" text="Refresh All" (onClick)="refreshAll()">
-      </dx-button>
-
-    </div>
-  </div> -->
   <div>
     <dx-data-grid #positionsContainer id="positionsContainer" [dataSource]="dataSource" [showBorders]="true"
       [columnHidingEnabled]="true"
@@ -19,8 +10,8 @@
       </dxi-column>
       <dxi-column dataField="Role" caption="Role" [allowSorting]="true" groupIndex="0"></dxi-column>
 
-      <dxi-column dataField="AccountName" caption="Account Type" [allowSorting]="true"></dxi-column>
-      <dxi-column dataField="Symbol" [allowSorting]="true" cellTemplate="symbolCellTemplate" sortOrder="asc">
+      <dxi-column dataField="AccountName" caption="Account Type" [allowSorting]="true" sortOrder="asc"></dxi-column>
+      <dxi-column dataField="Symbol" [allowSorting]="true" cellTemplate="symbolCellTemplate">
       </dxi-column>
 
       <dxi-column dataField="Lots" [allowSorting]="true" [hidingPriority]="1"></dxi-column>
