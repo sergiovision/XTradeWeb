@@ -14,7 +14,7 @@ export class Priority {
   styleUrls: ['../../../../scss/vendors/angular-calendar/angular-calendar.scss']
 })
 export class CalendarComponent implements OnInit  {
-  @ViewChild(DxSchedulerComponent) scheduler: DxSchedulerComponent;
+  // @ViewChild(DxSchedulerComponent) scheduler: DxSchedulerComponent;
 
 
   public dataSource: any;
@@ -65,11 +65,11 @@ ngOnInit() {
 }
 
 onCellClick() {
-  this.startDate = this.scheduler.instance.getStartViewDate();
-  if (this.startDate.toLocaleDateString() !== this.viewDate.toLocaleDateString()) {
-    this.viewDate = this.startDate;
-    this.loadData();
-  }
+  //this.startDate = this.scheduler.instance.getStartViewDate();
+  //if (this.startDate.toLocaleDateString() !== this.viewDate.toLocaleDateString()) {
+  //  this.viewDate = this.startDate;
+  //  this.loadData();
+  //}
 }
 
 

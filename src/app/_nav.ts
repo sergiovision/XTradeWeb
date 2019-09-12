@@ -113,7 +113,7 @@ export const navItems = [
       }
     ]
   },
-  {
+  /*{
     name: 'News',
     url: '/news',
     icon: 'icon-energy',
@@ -124,7 +124,7 @@ export const navItems = [
         icon: 'icon-calendar',
       }
     ]
-  },
+  },*/
   {
     name: 'Tables',
     url: '/tables',

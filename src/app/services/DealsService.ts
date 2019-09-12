@@ -48,6 +48,26 @@ export class MetaSymbolStat {
   Date: Date;
 }
 
+export class Account {
+    Id: number;
+    Description: string;
+    Balance: number;
+    Equity: number;
+    CurrencyId: number;
+    CurrencyStr: string;
+    WalletId: number;
+    TerminalId: number;
+    PersonId: number;
+    Number: number;
+    Lastupdate: Date;
+    Retired: boolean;
+    Typ: number;
+    DailyProfit: number;
+    DailyMaxGain: number;
+    StopTrading: boolean;
+    StopReason: string;
+}
+
 export class TodayStat {
     TodayGainReal: number;
     TodayGainDemo: number;
@@ -55,8 +75,12 @@ export class TodayStat {
     TodayGainDemoPercent: number;
     TodayBalanceReal: number;
     TodayBalanceDemo: number;
+    RISK_PER_DAY: number;
+    DAILY_MIN_GAIN: number;
+    DAILY_LOSS_AFTER_GAIN: number;
+    Deals: Deal[];
+    Accounts: Account[];
 }
-
 
 @Injectable()
 export class DealsService extends BaseService {

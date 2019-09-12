@@ -44,6 +44,7 @@
         <div>
           <span [class.inc]="this.stat.TodayGainReal > 0" [class.dec]="this.stat.TodayGainReal < 0">Real: ${{this.stat.TodayGainReal}} </span>
           <span [class.inc]="this.stat.TodayGainDemo > 0" [class.dec]="this.stat.TodayGainDemo < 0">Demo: ${{this.stat.TodayGainDemo}} </span>
+          <span>Risk: %{{(this.stat.RISK_PER_DAY*100).toFixed(2)}} %{{(this.stat.DAILY_MIN_GAIN*100).toFixed(2) }} %{{(this.stat.DAILY_LOSS_AFTER_GAIN*100).toFixed(2)}}</span>
         </div>
       </div>
 
@@ -52,8 +53,7 @@
   </div>
   <div>
     <dx-data-grid #dealsContainer id="dealsContainer"
-
-      [dataSource]="dealsSource"
+      [dataSource]="stat.Deals"
       keyExpr="Ticket"
       [showRowLines]="true"
       [columnHidingEnabled]="true"
@@ -62,7 +62,7 @@
       [showBorders]="true">
       <dxo-scrolling mode="virtual"></dxo-scrolling>
       <dxo-paging [enabled]="false"></dxo-paging>
-      <dxi-column dataField="AccountName" [allowSorting]="true" [width]="180" groupIndex="0"></dxi-column>
+      <dxi-column dataField="AccountName" [allowSorting]="true" caption="Account" [width]="180" groupIndex="0"></dxi-column>
       <dxi-column dataField="CloseTime" [allowSorting]="true" format="datetime" [width]="160" [hidingPriority]="3" sortOrder="desc"></dxi-column>
       <dxi-column dataField="Ticket" [width]="120" [hidingPriority]="1"></dxi-column>
       <dxi-column dataField="Symbol" [allowSorting]="true" cellTemplate="symbolDealCellTemplate">

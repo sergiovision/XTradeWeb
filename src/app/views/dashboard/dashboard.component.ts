@@ -43,9 +43,9 @@ declare var require: any;
 export class DashboardComponent implements OnInit {
   // example is here
   // http://jasonwatmore.com/post/2018/10/29/angular-7-user-registration-and-login-example-tutorial
-  @ViewChild('positionsContainer') positionsContainer: DxDataGridComponent;
+  // @ViewChild('positionsContainer') positionsContainer: DxDataGridComponent;
   dataSource: any;
-  dealsSource: any;
+  // dealsSource: any;
   connectionStarted: boolean;
   popupVisible = false;
   currentUser: UserToken;
@@ -85,7 +85,7 @@ export class DashboardComponent implements OnInit {
         key: data
       }]);
       this.UpdateDeals();
-      this.positionsContainer.instance.repaint();
+      //this.positionsContainer.instance.repaint();
     });
 
     this.proxy.on('InsertPosition', (data: any) => {
@@ -93,7 +93,7 @@ export class DashboardComponent implements OnInit {
         type: 'insert',
         data: data
       }]);
-      this.positionsContainer.instance.repaint();
+      //this.positionsContainer.instance.repaint();
     });
 
     this.store = new CustomStore({
@@ -118,14 +118,14 @@ export class DashboardComponent implements OnInit {
   }
 
   public UpdateDeals() {
-    this.deals.getTodayDeals().subscribe(
-      data => {
-        this.dealsSource = data;
-      },
-      error => {
-          const message = JSON.stringify( error.error) + '\n' + error.statusText;
-          console.log(message);
-      });
+    //this.deals.getTodayDeals().subscribe(
+    //  data => {
+    //    this.dealsSource = data;
+    //  },
+    //  error => {
+    //      const message = JSON.stringify( error.error) + '\n' + error.statusText;
+    //      console.log(message);
+    //  });
 
     this.deals.getTodayStat().subscribe(
         data => {

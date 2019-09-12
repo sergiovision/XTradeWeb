@@ -18,7 +18,7 @@ declare var require: any;
   templateUrl: 'logs.component.html'
 })
 export class LogsComponent implements AfterViewInit, OnInit {
-  @ViewChild('editor') editor;
+  // @ViewChild('editor') editor;
 
   // text: string = defaults.markdown;
   options: any = {
@@ -83,9 +83,9 @@ export class LogsComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit () {
-    this.editor.setMode('markdown');
-    this.editor.setTheme('eclipse');
-    this.editor.setReadOnly(true);
+    // this.editor.setMode('markdown');
+    // this.editor.setTheme('eclipse');
+    // this.editor.setReadOnly(true);
   }
 
 

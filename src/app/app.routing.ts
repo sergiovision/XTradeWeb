@@ -76,11 +76,13 @@ export const routes: Routes = [
         canActivate: [AuthGuard],
         loadChildren: './views/dashboard/dashboard.module#DashboardModule'
       },
+    /* 
       {
         path: 'news',
         canActivate: [AuthGuard],
         loadChildren: './views/news/news.module#NewsModule'
-      },
+      }, 
+      */
       {
         path: 'tables',
         canActivate: [AuthGuard],
