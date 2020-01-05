@@ -11,6 +11,12 @@
   <dxi-series valueField="InvestingChange" type="bar" name="Trading Result" pane="topPane" color='#cc0000'
   ></dxi-series>
   <dxi-series valueField="CheckingChange"  type="bar" name="Total Result"  color='#6666ff'></dxi-series>
+  <dxo-argument-axis>
+        
+        <dxo-label [visible]="true" format="##"></dxo-label>
+        
+ </dxo-argument-axis>
+
   <dxo-common-series-settings #seriesSettings
   argumentField="X"
   hoverMode="allArgumentPoints"
@@ -21,7 +27,7 @@
 </dxo-common-series-settings>
 <dxi-pane name="topPane" ></dxi-pane>
 <dxi-pane name="bottomPane" ></dxi-pane>
-
+  
   <dxi-value-axis pane="bottomPane" [visible]="true">
         <dxo-title text="Total, $"></dxo-title>
   </dxi-value-axis>

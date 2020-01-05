@@ -1,7 +1,5 @@
-import { DealsService, Deal } from '../../../services/DealsService';
+import { DealsService } from '../../../services/DealsService';
 import { Component, OnInit } from '@angular/core';
-import query from 'devextreme/data/query';
-import notify from 'devextreme/ui/notify';
 
 @Component({
   templateUrl: './deals.component.html',

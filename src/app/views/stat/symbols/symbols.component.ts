@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DealsService, MetaSymbolStat } from '../../../services/DealsService';
-import notify from 'devextreme/ui/notify';
+import { DealsService } from '../../../services/DealsService';
+import { MetaSymbolStat } from '../../../models/Entities';
 
 export class SelectAccountType {
   id: number;

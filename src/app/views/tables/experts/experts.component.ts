@@ -1,11 +1,10 @@
-import { ExpertsService, ExpertCluster, Adviser } from '../../../services/ExpertsService';
+import { ExpertsService } from '../../../services/ExpertsService';
 import { Component, OnInit } from '@angular/core';
 import query from 'devextreme/data/query';
 import notify from 'devextreme/ui/notify';
+import { ExpertCluster, Adviser, Dictionary } from '../../../models/Entities';
 
-interface Dictionary<T> {
-  [Key: string]: T;
-}
+
 @Component({
   templateUrl: './experts.component.html',
   styleUrls: ['./experts.component.scss']

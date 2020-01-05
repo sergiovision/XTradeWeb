@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { BehaviorSubject, Observable, empty } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import notify from 'devextreme/ui/notify';
-import { UserToken } from '../models/UserToken';
+import { UserToken } from '../models/Entities';
 import { BaseService } from './BaseService';
 
 @Injectable({ providedIn: 'root' })

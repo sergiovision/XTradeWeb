@@ -2,17 +2,7 @@ import { BaseService } from './BaseService';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import notify from 'devextreme/ui/notify';
-
-export class Terminal {
-    Id: number;
-    AccountNumber: number;
-    Broker: string;
-    FullPath: string;
-    CodeBase: string;
-    Disabled: boolean;
-    Demo: boolean;
-    Stopped: boolean;
-}
+import { Terminal } from '../models/Entities';
 
 @Injectable()
 export class TerminalsService extends BaseService {

@@ -8,4 +8,8 @@ export class CoreUIPage {
   getParagraphText() {
     return element(by.tagName('footer')).getText();
   }
+  getTitle() {
+    return browser.getTitle();
+  }
+
 }

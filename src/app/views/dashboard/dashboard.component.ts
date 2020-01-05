@@ -12,15 +12,9 @@ import {
   Router
 } from '@angular/router';
 
-import {
-  UserToken
-} from '../../models/UserToken';
+import { UserToken, PositionInfo, TodayStat } from '../../models/Entities';
 
-import {
-  DealsService,
-  PositionInfo,
-  TodayStat
-} from '../../services/DealsService';
+import {  DealsService } from '../../services/DealsService';
 
 import {
   JobsService

@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { WalletsService, TimeStat } from '../../../services/WalletsService';
+import { WalletsService } from '../../../services/WalletsService';
 import notify from 'devextreme/ui/notify';
-// import { validateConfig } from '@angular/router/src/config';
-
-export class SelectMonth {
-  id: number;
-  name: string;
-  value: number;
-}
+import { TimeStat, SelectMonth } from '../../../models/Entities';
 
 let currMonth = 0;
 

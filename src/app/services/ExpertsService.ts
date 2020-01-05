@@ -2,30 +2,7 @@ import { BaseService } from './BaseService';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import notify from 'devextreme/ui/notify';
-
-export class ExpertCluster {
-    Id: number;
-    Name: string;
-    Description: string;
-    MetaSymbol: string;
-    MasterAdviserId: number;
-    Typ: number;
-    Retired: boolean;
-}
-
-export class Adviser {
-    Id: number;
-    Name: string;
-    TerminalId: string;
-    Symbol: string;
-    Timeframe: number;
-    Lastupdate: Date;
-    CloseReason: number;
-    State: string;
-    Running: boolean;
-    Disabled: boolean;
-    ClusterId: number;
-}
+import { Adviser } from '../models/Entities';
 
 @Injectable()
 export class ExpertsService extends BaseService {

@@ -1,7 +1,7 @@
 import { BaseService } from './BaseService';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UserToken } from '../models/UserToken';
+import { UserToken } from '../models/Entities';
 
 @Injectable()
 export class PersonService extends BaseService {

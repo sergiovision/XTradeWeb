@@ -1,8 +1,8 @@
-import { TerminalsService, Terminal } from './../../../services/TerminalsService';
+import { TerminalsService } from './../../../services/TerminalsService';
+import { Terminal } from '../../../models/Entities';
 import { Component, OnInit } from '@angular/core';
 import query from 'devextreme/data/query';
 import notify from 'devextreme/ui/notify';
-// import * as AspNetData from 'devextreme-aspnet-data-nojquery';
 
 @Component({
   templateUrl: './terminals.component.html',

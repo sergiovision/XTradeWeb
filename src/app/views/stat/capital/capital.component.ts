@@ -1,20 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { WalletsService, Wallet } from '../../../services/WalletsService';
-import notify from 'devextreme/ui/notify';
-
-export class SelectYear {
-  id: number;
-  name: string;
-  valueFrom: Date;
-  valueTo: Date;
-}
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { WalletsService } from '../../../services/WalletsService';
+import { DxChartComponent } from 'devextreme-angular';
+import { Wallet, SelectYear } from '../../../models/Entities';
 
 @Component({
   templateUrl: 'capital.component.html',
   styleUrls: ['capital.component.scss']
 })
 
-export class CapitalComponent implements OnInit  {
+export class CapitalComponent implements OnInit, AfterViewInit  {
+
+  @ViewChild('walletChart', {static: false}) walletChart: DxChartComponent;
+
   dataSource: Wallet[];
 
   fromDate: Date;
@@ -22,39 +19,29 @@ export class CapitalComponent implements OnInit  {
   currentYearIndex: number;
   loadingVisible: boolean;
 
-  public years: SelectYear[] = [{
-    id: 0,
-    name: '2015',
-    valueFrom: new Date(2015, 1, 2),
-    valueTo: new Date(2015, 11, 31),
-  },
- {
-    id: 1,
-    name: '2016',
-    valueFrom: new Date(2016, 0, 2),
-    valueTo: new Date(2016, 11, 31),
-  },
- {
-    id: 2,
-    name: '2017',
-    valueFrom: new Date(2017, 2, 12),
-    valueTo: new Date(2017, 11, 31),
-  },
- {
-    id: 3,
-    name: '2018',
-    valueFrom: new Date(2018, 0, 2),
-    valueTo: new Date(2018, 11, 31),
-  },
-  {
-    id: 4,
-    name: '2019',
-    valueFrom: new Date(2019, 0, 2),
-    valueTo: new Date(Date.now()),
-  } ];
+  public years: Array<SelectYear>;
+
+
+  public getYears()  {
+    let arr = new Array<SelectYear>();
+    var d = new Date();
+    var cY = d.getFullYear();
+    let i = 0;
+    for (let index = cY; index >= 2015; index--) {
+      const yearX:number = index;
+      arr.push( {
+        id: i++,
+        name: yearX.toString(),
+        valueFrom: new Date(yearX, 1, 2),
+        valueTo: new Date(yearX, 11, 31)
+      });       
+    }
+    return arr;    
+  }
 
   constructor(public wallets: WalletsService) {
-    this.currentYearIndex = 4;
+    this.currentYearIndex = 0;
+    this.years = this.getYears();
     this.fromDate = this.years[this.currentYearIndex].valueFrom;
     this.toDate = this.years[this.currentYearIndex].valueTo;
     this.loadingVisible = true;
@@ -79,9 +66,16 @@ export class CapitalComponent implements OnInit  {
     this.loadData();
   }
 
+  ngAfterViewInit() {
+    // this.walletChart.argumentAxis.label.format = "month";
+    // this.walletChart.argumentAxis.label.visible = false;
+
+  }
+
   customizeTooltip(arg) {
+    const price: number = arg.value;
     return {
-      text: arg.valueText + '$ / ' + arg.argumentText
+      text: price.toFixed(2) + '$ / ' + arg.argumentText
     };
   }
 

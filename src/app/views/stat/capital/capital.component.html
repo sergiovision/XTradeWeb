@@ -1,10 +1,12 @@
 <div class="card" id="mainChart">
 <dx-chart
+#walletChart
 id="walletChart"
 palette="violet"
 [dataSource]="dataSource">
     <dxi-series
         valueField="Balance"
+        
         name="Total">
     </dxi-series>
     <dxo-scroll-bar [visible]="true"></dxo-scroll-bar>
@@ -23,9 +25,10 @@ palette="violet"
     <dxo-argument-axis
         [valueMarginsEnabled]="false"
         argumentType="datetime">
-        <dxo-label [visible]="true"></dxo-label>
+        <dxo-label [visible]="true" format="month"></dxo-label>
         <dxo-grid [visible]="true"></dxo-grid>
     </dxo-argument-axis>
+
     <dxo-legend
         verticalAlignment="bottom"
         horizontalAlignment="center"
@@ -48,7 +51,7 @@ palette="violet"
       id="selectbox"
       [items]="years"
       [width]="150"
-      [value]="4"
+      [value]="0"
       valueExpr="id"
       displayExpr="name"
       (onValueChanged)="onValueChanged($event)"

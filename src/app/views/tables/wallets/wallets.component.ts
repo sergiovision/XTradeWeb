@@ -1,7 +1,9 @@
-import { WalletsService, Wallet, AccountState, Account } from '../../../services/WalletsService';
+import { WalletsService } from '../../../services/WalletsService';
 import { Component, OnInit } from '@angular/core';
 import query from 'devextreme/data/query';
 import notify from 'devextreme/ui/notify';
+import { AccountState, AccountView } from '../../../models/Entities';
+
 
 @Component({
   templateUrl: './wallets.component.html',
@@ -38,7 +40,7 @@ export class WalletsComponent implements OnInit {
    public onClickCell(e) {
      const id: number = e.columnIndex;
      if (id === 6) {
-       const account: Account = e.data;
+       const account: AccountView = e.data;
        this.currentState = new AccountState();
        this.currentState.Balance = account.Balance;
        this.currentState.AccountId = account.Id;

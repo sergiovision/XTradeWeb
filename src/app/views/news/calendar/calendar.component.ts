@@ -1,8 +1,6 @@
 import {Component, OnInit, ViewChild, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-
-import { NewsService, NewsEventInfo, NewsCalendarEvent} from '../../../services/NewsService';
+import { NewsService} from '../../../services/NewsService';
 import { DxSchedulerComponent } from 'devextreme-angular';
-
 
 export class Priority {
   text: string;
@@ -15,7 +13,6 @@ export class Priority {
 })
 export class CalendarComponent implements OnInit  {
   // @ViewChild(DxSchedulerComponent) scheduler: DxSchedulerComponent;
-
 
   public dataSource: any;
   viewDate: Date;

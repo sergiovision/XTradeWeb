@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { UserToken } from '../models/UserToken';
+import { UserToken } from '../models/Entities';
 import { DatePipe } from '@angular/common';
-import { RouteConfigLoadStart } from '@angular/router';
 import * as config from '../../assets/config.json';
 
 @Injectable()
