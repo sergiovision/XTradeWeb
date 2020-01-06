@@ -24,17 +24,18 @@ export class CapitalComponent implements OnInit, AfterViewInit  {
 
   public getYears()  {
     let arr = new Array<SelectYear>();
-    var d = new Date();
+    var d = new Date(Date.now());
     var cY = d.getFullYear();
     let i = 0;
     for (let index = cY; index >= 2015; index--) {
       const yearX:number = index;
       arr.push( {
-        id: i++,
+        id: i,
         name: yearX.toString(),
-        valueFrom: new Date(yearX, 1, 2),
-        valueTo: new Date(yearX, 11, 31)
-      });       
+        valueFrom: new Date(yearX, 0, 2),
+        valueTo: (i===0)?d:new Date(yearX, 11, 31)
+      });  
+      i++;     
     }
     return arr;    
   }
@@ -74,8 +75,9 @@ export class CapitalComponent implements OnInit, AfterViewInit  {
 
   customizeTooltip(arg) {
     const price: number = arg.value;
+    const d: Date = arg.originalArgument;
     return {
-      text: price.toFixed(2) + '$ / ' + arg.argumentText
+      text: price.toFixed(2) + '$ / ' + d.toDateString()
     };
   }
 

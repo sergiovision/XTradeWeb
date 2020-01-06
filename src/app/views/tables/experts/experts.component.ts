@@ -2,7 +2,7 @@ import { ExpertsService } from '../../../services/ExpertsService';
 import { Component, OnInit } from '@angular/core';
 import query from 'devextreme/data/query';
 import notify from 'devextreme/ui/notify';
-import { ExpertCluster, Adviser, Dictionary } from '../../../models/Entities';
+import { Adviser, Dictionary } from '../../../models/Entities';
 
 
 @Component({
@@ -36,6 +36,15 @@ export class ExpertsComponent implements OnInit {
                 const message = JSON.stringify( error.error) + '\n' + error.statusText;
                 console.log(message);
             });
+  }
+
+  getCurrentAdviserText(): string {
+    let ret: string = " Expert Settings";
+    if (this.currentAdviser) {
+      return this.currentAdviser.Symbol + ret;
+    } else     {
+        return ret;
+    }
   }
 
   ngOnInit() {

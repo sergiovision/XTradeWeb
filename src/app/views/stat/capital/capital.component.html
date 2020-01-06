@@ -12,6 +12,7 @@ palette="violet"
     <dxo-scroll-bar [visible]="true"></dxo-scroll-bar>
     <dxo-common-series-settings #seriesSettings
         argumentField="Date"
+        
         type="spline">
     </dxo-common-series-settings>
     <dxo-margin [right]="30"></dxo-margin>
@@ -22,13 +23,16 @@ palette="violet"
     [allowMouseWheel]="true"
     panKey="shift"
     ></dxo-zoom-and-pan>
+    
     <dxo-argument-axis
         [valueMarginsEnabled]="false"
         argumentType="datetime">
-        <dxo-label [visible]="true" format="month"></dxo-label>
+        <dxo-label [visible]="true" ></dxo-label>
         <dxo-grid [visible]="true"></dxo-grid>
     </dxo-argument-axis>
-
+    <dxi-value-axis [valueMarginsEnabled]="false" argumentType="currency">
+        <dxo-label [visible]="true" format="currency"></dxo-label>
+    </dxi-value-axis>
     <dxo-legend
         verticalAlignment="bottom"
         horizontalAlignment="center"

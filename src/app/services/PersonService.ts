@@ -9,10 +9,10 @@ export class PersonService extends BaseService {
     constructor(protected http: HttpClient) { super(http); }
 
     create(user: UserToken) {
-        return this.http.post('${config.apiUrl}/api/persons', user);
+        return this.http.post(this.baseURL +'/api/persons', user);
     }
 
     update(user: UserToken) {
-        return this.http.put('${config.apiUrl}/api/persons/' + user.userName, user);
+        return this.http.put(this.baseURL + '/api/persons/' + user.userName, user);
     }
 }

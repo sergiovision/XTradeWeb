@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { UserToken } from '../models/Entities';
 import { DatePipe } from '@angular/common';
-import * as config from '../../assets/config.json';
 
 @Injectable()
 export class BaseService {
@@ -14,13 +13,8 @@ export class BaseService {
 
   constructor(protected http: HttpClient) {
     this.datePipe = new DatePipe('en-US');
-    if (environment.production) {
-      // console.log('Config: ' + config['baseURL']);
-      this.baseURL = config['baseURL.Prod'];
-    } else {
-      this.baseURL = config['baseURL.Dev'];
-    }
-    this.formatDate = config['dateFormat'];
+    this.baseURL = environment.baseURL;
+    this.formatDate = environment.dateFormat;
   }
 
   transformDate(date): string {
@@ -28,7 +22,7 @@ export class BaseService {
   }
 
   transformShortDate(date): string {
-    return this.datePipe.transform(date, config['shortDateFormat']);
+    return this.datePipe.transform(date, environment.shortDateFormat);
   }
 
   // transformMTDate(date): Date {
