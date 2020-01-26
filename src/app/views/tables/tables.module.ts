@@ -1,11 +1,9 @@
-import { ExpertsService } from './../../services/ExpertsService';
+import { ExpertsService } from '../../services/experts.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { TablesComponent } from './tables.component';
+import { FormsModule } from '@angular/forms';
 import { DevExtremeModule,
-  DxSelectBoxModule,
-  DxCheckBoxModule,
   DxTextBoxModule,
   DxDateBoxModule,
   DxButtonModule,
@@ -13,22 +11,31 @@ import { DevExtremeModule,
   DxValidationSummaryModule,
   DxDataGridModule,
   DxTemplateModule,
-  DxPopupModule } from 'devextreme-angular';
+  DxPopupModule,
+  DxNumberBoxModule,
+  DxTextAreaModule,
+  DxCheckBoxModule,
+  DxSelectBoxModule } from 'devextreme-angular';
 
 // Routing
 import { TablesRoutingModule } from './tables-routing.module';
-import { TerminalsService } from './../../services/TerminalsService';
-import { JobsService } from './../../services/JobsService';
+import { TerminalsService } from '../../services/terminals.service';
+import { JobsService } from '../../services/jobs.service';
 import { TerminalsComponent } from './terminals/terminals.component';
 import { JobsComponent } from './jobs/jobs.component';
-import { WalletsService} from './../../services/WalletsService';
-import { DealsService} from './../../services/DealsService';
+import { WalletsService} from '../../services/wallets.service';
+import { DealsService} from '../../services/deals.service';
 import { WalletsComponent } from './wallets/wallets.component';
 import { DealsComponent } from './deals/deals.component';
 import { ExpertsComponent } from './experts/experts.component';
+import { PropsService } from '../../services/props.service';
+import { AuthenticationService } from '../../services/authentication.service';
+import { PropertiesComponent } from './properties/properties.component';
 
 @NgModule({
   imports: [
+    CommonModule,
+    DxNumberBoxModule,
     DevExtremeModule,
     TablesRoutingModule,
     DxSelectBoxModule,
@@ -40,7 +47,9 @@ import { ExpertsComponent } from './experts/experts.component';
     DxValidationSummaryModule,
     DxDataGridModule,
     DxTemplateModule,
-    DxPopupModule
+    DxPopupModule,
+    DxTextAreaModule,
+    FormsModule
   ],
   declarations: [
     TablesComponent,
@@ -48,14 +57,17 @@ import { ExpertsComponent } from './experts/experts.component';
     JobsComponent,
     WalletsComponent,
     DealsComponent,
-    ExpertsComponent
+    ExpertsComponent,
+    PropertiesComponent
   ],
   providers: [
     TerminalsService,
     JobsService,
     WalletsService,
     DealsService,
-    ExpertsService
+    ExpertsService,
+    PropsService,
+    AuthenticationService
   ]
 
 })

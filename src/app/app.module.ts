@@ -54,12 +54,13 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 
-import { AuthenticationService } from './services/AuthenticationService';
-import { AlertService } from './services/AlertService';
-import { PersonService } from './services/PersonService';
+import { AuthenticationService } from './services/authentication.service';
+import { AlertService } from './services/alert.service';
+import { PersonService } from './services/person.service';
 import { JwtInterceptor } from './helpers/JwtInterceptior';
 import { ErrorInterceptor } from './helpers/ErrorInterceptor';
 import { AuthGuard } from './guards/AuthGuard';
+import { BaseComponent } from './base/base.component';
 
 @NgModule({
   imports: [
@@ -89,6 +90,7 @@ import { AuthGuard } from './guards/AuthGuard';
     DxTemplateModule
   ],
   declarations: [
+    BaseComponent,
     AppComponent,
     ...APP_CONTAINERS,
     P404Component,

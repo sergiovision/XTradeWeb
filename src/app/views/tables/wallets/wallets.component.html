@@ -19,6 +19,12 @@
             (onCellClick)="onClickCell($event)"
             >
                 <dxo-paging [enabled]="false"></dxo-paging>
+                <dxi-column [width]="100" caption="Update"
+                    cellTemplate="cellTemplateUpdate" [allowFiltering]="false" [allowSorting]="false">
+                    <div *dxTemplate="let data of 'cellTemplateUpdate'">
+                      <dx-button text="Update"></dx-button>
+                    </div>
+                </dxi-column>
                 <dxi-column dataField="Number" width="80"></dxi-column>
                 <dxi-column dataField="Description"></dxi-column>
                 <dxi-column dataField="Equity" width="0"></dxi-column>
@@ -27,12 +33,6 @@
                 </dxi-column>
                 <dxi-column dataField="CurrencyStr" caption="Curr" width="80"></dxi-column>
                 <dxi-column dataField="Typ" caption="Type" width="100" ></dxi-column>
-                <dxi-column [width]="100" caption="Update"
-                    cellTemplate="cellTemplateUpdate" [allowFiltering]="false" [allowSorting]="false">
-                    <div *dxTemplate="let data of 'cellTemplateUpdate'">
-                      <dx-button text="Update"></dx-button>
-                    </div>
-                </dxi-column>
         </dx-data-grid>
     </div>
 

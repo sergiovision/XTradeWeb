@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { NewsService} from '../../../services/NewsService';
+import { NewsService} from '../../../services/news.service';
 import { DxSchedulerComponent } from 'devextreme-angular';
 
 export class Priority {

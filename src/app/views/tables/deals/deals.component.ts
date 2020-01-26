@@ -1,19 +1,21 @@
-import { DealsService } from '../../../services/DealsService';
+import { DealsService } from '../../../services/deals.service';
 import { Component, OnInit } from '@angular/core';
+import { BaseComponent } from '../../../base/base.component';
 
 @Component({
   templateUrl: './deals.component.html',
   styleUrls: ['./deals.component.scss']
 })
-export class DealsComponent implements OnInit {
+export class DealsComponent extends BaseComponent implements OnInit {
   dataSource: any;
   popupVisible = false;
 
   constructor(public deals: DealsService) {
+    super();
   }
 
   loadData() {
-      this.deals.getAll()
+      this.subs.sink = this.deals.getAll()
         .subscribe(
             data => {
               // this.dataSource = query(data).filter(['Disabled', '==', '0']).toArray();

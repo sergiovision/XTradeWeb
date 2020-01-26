@@ -14,17 +14,18 @@ import {
 
 import { UserToken, PositionInfo, TodayStat } from '../../models/Entities';
 
-import {  DealsService } from '../../services/DealsService';
+import { DealsService } from '../../services/deals.service';
 
 import {
   JobsService
-} from '../../services/JobsService';
+} from '../../services/jobs.service';
 
 import CustomStore from 'devextreme/data/custom_store';
 import notify from 'devextreme/ui/notify';
 import {
   DxDataGridComponent
 } from 'devextreme-angular';
+import { BaseComponent } from '../../base/base.component';
 
 declare var $: any;
 declare var jQuery: any;
@@ -34,7 +35,7 @@ declare var require: any;
   templateUrl: 'dashboard.component.html',
   styleUrls: ['dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent extends BaseComponent implements OnInit {
   // example is here
   // http://jasonwatmore.com/post/2018/10/29/angular-7-user-registration-and-login-example-tutorial
   // @ViewChild('positionsContainer') positionsContainer: DxDataGridComponent;
@@ -53,6 +54,7 @@ export class DashboardComponent implements OnInit {
   protected store: CustomStore;
 
   constructor(public deals: DealsService, public jobs: JobsService) {
+    super();
     this.ds = deals;
     this.js = jobs;
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -65,7 +67,7 @@ export class DashboardComponent implements OnInit {
 
     this.proxy = this.connection.createHubProxy('terminalsHub');
 
-    this.proxy.on('UpdatePosition', (data: any) => {
+    this.subs.sink = this.proxy.on('UpdatePosition', (data: any) => {
       this.store.push([{
         type: 'update',
         key: data.Ticket,
@@ -73,21 +75,21 @@ export class DashboardComponent implements OnInit {
       }]);
     });
 
-    this.proxy.on('RemovePosition', (data: number) => {
+    this.subs.sink = this.proxy.on('RemovePosition', (data: number) => {
       this.store.push([{
         type: 'remove',
         key: data
       }]);
       this.UpdateDeals();
-      //this.positionsContainer.instance.repaint();
+      // this.positionsContainer.instance.repaint();
     });
 
-    this.proxy.on('InsertPosition', (data: any) => {
+    this.subs.sink = this.proxy.on('InsertPosition', (data: any) => {
       this.store.push([{
         type: 'insert',
         data: data
       }]);
-      //this.positionsContainer.instance.repaint();
+      // this.positionsContainer.instance.repaint();
     });
 
     this.store = new CustomStore({
@@ -96,7 +98,7 @@ export class DashboardComponent implements OnInit {
     });
 
     // atempt connection, and handle errors
-    this.connection.start({
+    this.subs.sink = this.connection.start({
         jsonp: true
       })
       .done(() => {
@@ -112,7 +114,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public UpdateDeals() {
-    //this.deals.getTodayDeals().subscribe(
+    // this.deals.getTodayDeals().subscribe(
     //  data => {
     //    this.dealsSource = data;
     //  },
@@ -121,7 +123,7 @@ export class DashboardComponent implements OnInit {
     //      console.log(message);
     //  });
 
-    this.deals.getTodayStat().subscribe(
+    this.subs.sink = this.deals.getTodayStat().subscribe(
         data => {
           this.stat = data;
         },
@@ -135,7 +137,7 @@ export class DashboardComponent implements OnInit {
     const id: number = e.columnIndex;
     if (id === 7) {
       const pos: PositionInfo = e.data;
-      this.ds.closePosition(pos.Account, pos.Magic, pos.Ticket).subscribe(
+      this.subs.sink = this.ds.closePosition(pos.Account, pos.Magic, pos.Ticket).subscribe(
         data => {
           console.log('Position close request sent ticket=' + pos.Ticket);
         },
@@ -148,7 +150,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public refreshAll() {
-    this.ds.refreshAll().subscribe(
+    this.subs.sink = this.ds.refreshAll().subscribe(
       data => {
         window.location.reload();
       },
@@ -159,7 +161,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public syncAll() {
-    this.js.runJob('SYSTEM', 'TerminalsSyncJob').subscribe(
+    this.subs.sink = this.js.runJob('SYSTEM', 'TerminalsSyncJob').subscribe(
       data => {
         window.location.reload();
       },

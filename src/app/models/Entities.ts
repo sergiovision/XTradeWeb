@@ -10,12 +10,13 @@ export interface Dictionary<T> {
     [Key: string]: T;
 }
 
-  
+
 export class ExpertCluster {
     Id: number;
     Name: string;
     Description: string;
     MetaSymbol: string;
+    MetaSymbolId: number;
     MasterAdviserId: number;
     Typ: number;
     Retired: boolean;
@@ -53,14 +54,14 @@ export class NewsCalendarEvent {
     endDate: Date;
     currency: string;
   }
-  
+
   export class NewsEventInfo {
     Currency: string;
     Name: string;
     Importance: number;
     RaiseDateTime: string;
   }
-  
+
   export class Deal {
     Id: number;
     AccountId: number;
@@ -74,7 +75,7 @@ export class NewsCalendarEvent {
     CloseTime: Date;
     Comment: string;
   }
-  
+
   export class PositionInfo {
     Account: number;
     AccountName: string;
@@ -89,7 +90,7 @@ export class NewsCalendarEvent {
     Profit: number;
     Role: string;
   }
-  
+
   export class MetaSymbolStat {
     MetaId: number;
     Name: string;
@@ -99,7 +100,7 @@ export class NewsCalendarEvent {
     ProfitPerTrade: number;
     Date: Date;
   }
-    
+
   export class TodayStat {
       TodayGainReal: number;
       TodayGainDemo: number;
@@ -113,7 +114,7 @@ export class NewsCalendarEvent {
       Deals: Deal[];
       Accounts: Account[];
   }
-  
+
   export class Wallet {
     Id: number;
     PersonId: number;
@@ -176,7 +177,6 @@ export class Account {
     StopReason: string;
 }
 
-
 export class TimeStat {
   Date: Date;
   X: number;
@@ -201,4 +201,3 @@ export class SelectMonth {
 }
 
 
-  

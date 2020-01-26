@@ -1,21 +1,29 @@
-import { TerminalsService } from './../../../services/TerminalsService';
+import { TerminalsService } from '../../../services/terminals.service';
 import { Terminal } from '../../../models/Entities';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import query from 'devextreme/data/query';
 import notify from 'devextreme/ui/notify';
+import { BaseComponent } from '../../../base/base.component';
+import { PropertiesComponent } from '../properties/properties.component';
 
 @Component({
   templateUrl: './terminals.component.html',
   styleUrls: ['./terminals.component.scss']
 })
-export class TerminalsComponent implements OnInit {
+export class TerminalsComponent extends BaseComponent implements OnInit {
   dataSource: any;
   showDisabled: boolean;
+  showTerminalProperties = false;
+  currentTerminal: Terminal;
+  @ViewChild(PropertiesComponent, {static: false}) propsContainer: PropertiesComponent;
+
   constructor(public terminals: TerminalsService) {
+    super();
     this.showDisabled = true;
   }
+
   loadData() {
-      this.terminals.getAll()
+    this.subs.sink = this.terminals.getAll()
         .subscribe(
             data => {
               // this.dataSource = query(data).filter(['Disabled', '==', '0']).toArray();
@@ -32,7 +40,7 @@ export class TerminalsComponent implements OnInit {
   }
 
   public genDeployScripts() {
-    this.terminals.genDeployScripts()
+    this.subs.sink =  this.terminals.genDeployScripts()
       .subscribe(
         data => {
           const message = 'Deploy finished with Result: ' + data;
@@ -47,32 +55,39 @@ export class TerminalsComponent implements OnInit {
 
   public onClickCell(e) {
     const id: number = e.columnIndex;
+    if ( id === 1 ) {
+        // this.showTerminalProperties = true;
+        this.currentTerminal = e.data;
+        this.propsContainer.setData(this.currentTerminal.Id);
+        return;
+    }
     if ((id === 2) || (id === 3)) {
        const term: Terminal = e.data;
-       if ( id === 2) {
-          term.Disabled = !term.Disabled;
+       if (term !== undefined) {
+          if ( id === 2) {
+            term.Disabled = !term.Disabled;
+          }
+          if ( id === 3) {
+            term.Stopped = !term.Stopped;
+          }
+          this.subs.sink = this.terminals.updateTerminal(term)
+          .subscribe(
+           data => {
+             this.loadData();
+           },
+           error => {
+               const message = JSON.stringify(error);
+               console.log(message);
+               notify(message);
+           });
        }
-       if ( id === 3) {
-        term.Stopped = !term.Stopped;
-       }
-       this.terminals.updateTerminal(term)
-       .subscribe(
-        data => {
-          this.loadData();
-        },
-        error => {
-            const message = JSON.stringify(error);
-            console.log(message);
-            notify(message);
-        });
        return;
     }
     if (id === 4) {
       const data: any = e.data;
-      this.terminals.deployTerminal(data.Id);
+      this.subs.sink = this.terminals.deployTerminal(data.Id);
       return;
     }
-
  }
 
   public disableText(e: any): string {
@@ -87,6 +102,14 @@ export class TerminalsComponent implements OnInit {
     return 'undefined';
   }
 
+  getCurrentTitle(): string {
+    const ret = ' Properties';
+    if (this.currentTerminal) {
+      return this.currentTerminal.Broker + ': ' + this.currentTerminal.AccountNumber + ret;
+    } else     {
+        return 'Account' + ret;
+    }
+  }
 
 /*
   public onToolbarPreparing(e) {

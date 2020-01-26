@@ -1,4 +1,4 @@
-import { NewsService } from './../../../services/NewsService';
+import { NewsService } from '../../../services/news.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 

@@ -1,14 +1,15 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { WalletsService } from '../../../services/WalletsService';
+import { WalletsService } from '../../../services/wallets.service';
 import { DxChartComponent } from 'devextreme-angular';
 import { Wallet, SelectYear } from '../../../models/Entities';
+import { BaseComponent } from '../../../base/base.component';
 
 @Component({
   templateUrl: 'capital.component.html',
   styleUrls: ['capital.component.scss']
 })
 
-export class CapitalComponent implements OnInit, AfterViewInit  {
+export class CapitalComponent extends BaseComponent implements OnInit, AfterViewInit  {
 
   @ViewChild('walletChart', {static: false}) walletChart: DxChartComponent;
 
@@ -34,13 +35,14 @@ export class CapitalComponent implements OnInit, AfterViewInit  {
         name: yearX.toString(),
         valueFrom: new Date(yearX, 0, 2),
         valueTo: (i===0)?d:new Date(yearX, 11, 31)
-      });  
-      i++;     
+      });
+      i++;
     }
-    return arr;    
+    return arr;
   }
 
   constructor(public wallets: WalletsService) {
+    super();
     this.currentYearIndex = 0;
     this.years = this.getYears();
     this.fromDate = this.years[this.currentYearIndex].valueFrom;
@@ -51,7 +53,7 @@ export class CapitalComponent implements OnInit, AfterViewInit  {
   loadData() {
     this.loadingVisible = true;
 
-    this.wallets.getRange(this.wallets.transformDate(this.fromDate), this.wallets.transformDate(this.toDate))
+    this.subs.sink = this.wallets.getRange(this.wallets.transformDate(this.fromDate), this.wallets.transformDate(this.toDate))
       .subscribe(
           data => {
             this.dataSource = data;

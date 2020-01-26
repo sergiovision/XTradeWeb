@@ -1,0 +1,118 @@
+<form>
+  <dx-button text="Save" (onClick)="updateProperty()"></dx-button>
+  <div class="dx-field">
+    <div class="dx-field-value">
+      <dx-date-box
+          [value]="this.UpdatedProperty"
+          type="datetime"
+          [disabled]="true">
+      </dx-date-box>
+    </div>
+  </div>
+  <div class="dx-fieldset" *ngFor="let group of defs">
+    <div class="dx-fieldset-header">{{ group[0] }}</div>
+    <div class="dx-fieldset" *ngFor="let def of group[1]" [ngSwitch]="def['control']">
+      <div *ngSwitchCase="'hidden'">
+      </div>
+      <div *ngSwitchCase="'GeneralDouble'">
+        <div class="dx-field">
+          <div class="dx-field-label">{{ def['name'] }}</div>
+          <div class="dx-field-value">
+            <dx-number-box #doubleNumberBox="ngModel"
+                format="#0.####"
+                [(ngModel)]="dataSource[ def['name'] ].value"
+                  [name]="def['name']"
+                  showSpinButtons="true">
+            ></dx-number-box>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'LabelInteger'">
+        <div class="dx-field">
+          <div class="dx-field-label">{{ def['name'] }}</div>
+          <div class="dx-field-value">
+              <dx-number-box #labelBox="ngModel"
+                  [ngModel]="dataSource[ def['name'] ].value"
+                  [name]="def['name']"
+                  [disabled]="true"
+                  showSpinButtons="false">
+              </dx-number-box>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'GeneralInteger'">
+        <div class="dx-field">
+          <div class="dx-field-label">{{ def['name'] }}</div>
+          <div class="dx-field-value">
+              <dx-number-box #numberBox="ngModel"
+                  [(ngModel)]="dataSource[ def['name'] ].value"
+                  [name]="def['name']"
+                  showSpinButtons="true">
+              </dx-number-box>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'TextArea'">
+        <div class="dx-field-label">{{ def['name'] }}</div>
+        <div class="dx-field-value">
+          <div class="dx-field">
+            <dx-text-area
+            #textArea="ngModel"
+            [name]="def['name']"
+            [(ngModel)]="dataSource[ def['name'] ].value"
+            height="60"
+            [disabled]="false"
+            (onValueChanged)="onValueChanged($event)">
+            </dx-text-area>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--  <dx-check-box
+              [value]="false"
+              text="Limit text length">
+          </dx-check-box>
+
+    <div class="dx-fieldset">
+      <div class="dx-fieldset-header">Event Handling and API</div>
+      <div class="dx-field">
+          <div class="dx-field-label">Synchronize text areas </div>
+          <div class="dx-field-value">
+              <dx-select-box
+                  [items]="dataSource"
+                  valueExpr="name"
+                  displayExpr="title"
+                  [(value)]="dataSource">
+              </dx-select-box>
+          </div>
+        </div>
+    </div>
+    <div class="dx-fieldset">
+        <div class="dx-fieldset-header">Event Handling</div>
+        <div class="dx-field">
+            <div class="dx-field-label">This month sales</div>
+            <div class="dx-field-value">
+                <dx-number-box #numberBox
+                    [max]="30"
+                    [min]="0"
+                    [showSpinButtons]="true"
+                    [value]="16"
+                ></dx-number-box>
+            </div>
+        </div>
+        <div class="dx-field">
+            <div class="dx-field-label">Stock</div>
+            <div class="dx-field-value">
+                <dx-number-box
+                    [min]="0"
+                    [showSpinButtons]="false"
+                    [readOnly]="true"
+                    [value]="numberBox.max - numberBox.value"
+                ></dx-number-box>
+            </div>
+        </div>
+    </div>
+  -->
+  </div>
+</form>

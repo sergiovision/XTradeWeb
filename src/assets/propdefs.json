@@ -1,0 +1,106 @@
+{
+    "MetaSymbol": {
+      "System": [
+        {   "type": "integer",
+            "name": "ID",
+            "group": "System",
+            "control": "LabelInteger",
+            "defaultValue": -1,
+            "description": "Property ID in DB"
+        },
+        {   "type": "integer",
+            "name": "ObjectID",
+            "group": "System",
+            "control": "LabelInteger",
+            "defaultValue": -1,
+            "description": "Object ID in DB"
+        }
+      ],
+      "Specification": [
+        {   "type": "string",
+            "name": "Levels",
+            "group": "Specification",
+            "control": "TextArea",
+            "defaultValue": "0",
+            "description": "Levels of the Symbol"
+        }
+      ]
+    },
+    "Terminal": {
+      "System": [
+        {   "type": "integer",
+            "name": "ID",
+            "group": "System",
+            "control": "LabelInteger",
+            "defaultValue": -1,
+            "description": "Property ID in DB"
+        },
+        {   "type": "integer",
+            "name": "ObjectID",
+            "group": "System",
+            "control": "LabelInteger",
+            "defaultValue": -1,
+            "description": "Object ID in DB"
+        }
+      ],
+      "Specification": [
+        {   "type": "double",
+            "name": "Risk Per Day",
+            "group": "Specification",
+            "control": "GeneralDouble",
+            "defaultValue": "0.02",
+            "description": "Risk Per Day"
+        }
+    ]
+    },
+    "Adviser": {
+        "System": [
+        {   "type": "integer",
+            "name": "ID",
+            "group": "System",
+            "control": "LabelInteger",
+            "defaultValue": -1,
+            "description": "Property ID in DB"
+        },
+        {   "type": "integer",
+            "name": "ObjectID",
+            "group": "System",
+            "control": "LabelInteger",
+            "defaultValue": -1,
+            "description": "Object ID in DB"
+        }
+      ]
+    },
+    "Symbol": {
+        "System": [
+        {   "type": "integer",
+            "name": "ID",
+            "group": "System",
+            "control": "LabelInteger",
+            "defaultValue": -1,
+            "description": "Property ID in DB"
+        },
+        {   "type": "integer",
+            "name": "ObjectID",
+            "group": "System",
+            "control": "LabelInteger",
+            "defaultValue": -1,
+            "description": "Object ID in DB"
+        }],
+        "Specification":[
+        {   "type": "double",
+            "name": "LotMinLimit",
+            "group": "Specification",
+            "control": "GeneralDouble",
+            "defaultValue": 0.00,
+            "description": "Lowest lot value allowed"
+        },
+        {   "type": "double",
+            "name": "LotMaxLimit",
+            "group": "Specification",
+            "control": "GeneralDouble",
+            "defaultValue": 0.00,
+            "description": "Highest lot value allowed"
+        } ]
+    }
+}

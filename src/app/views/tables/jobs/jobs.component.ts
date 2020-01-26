@@ -1,18 +1,20 @@
-import { JobsService } from './../../../services/JobsService';
-import { TerminalsService } from '../../../services/TerminalsService';
+import { JobsService } from '../../../services/jobs.service';
+import { TerminalsService } from '../../../services/terminals.service';
 import { Component, OnInit } from '@angular/core';
 import notify from 'devextreme/ui/notify';
+import { BaseComponent } from '../../../base/base.component';
 
 @Component({
   templateUrl: './jobs.component.html',
   styleUrls: ['./jobs.component.scss']
 })
-export class JobsComponent implements OnInit {
+export class JobsComponent extends BaseComponent implements OnInit {
   dataSource: any;
   constructor(public jobs: JobsService) {
+    super();
   }
   loadData() {
-      this.jobs.getAll()
+      this.subs.sink = this.jobs.getAll()
         .subscribe(
             data => {
               // this.dataSource = query(data).filter(['Disabled', '==', '0']).toArray();
@@ -37,7 +39,7 @@ export class JobsComponent implements OnInit {
      const id: number = e.columnIndex;
      if (id === 5) {
         const data: any = e.data;
-        this.jobs.runJob(data.Group, data.Name)
+        this.subs.sink = this.jobs.runJob(data.Group, data.Name)
         .subscribe(
           // tslint:disable-next-line:no-shadowed-variable
           data => {
@@ -55,7 +57,7 @@ export class JobsComponent implements OnInit {
      }
      if (id === 6) {
       const data: any = e.data;
-      this.jobs.stopJob(data.Group, data.Name)
+      this.subs.sink = this.jobs.stopJob(data.Group, data.Name)
         .subscribe(
           // tslint:disable-next-line:no-shadowed-variable
           data => {

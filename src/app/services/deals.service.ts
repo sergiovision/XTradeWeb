@@ -1,6 +1,6 @@
 import {
   BaseService
-} from './BaseService';
+} from './base.service';
 import {
   Injectable
 } from '@angular/core';

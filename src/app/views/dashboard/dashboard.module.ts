@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
-import { DealsService} from './../../services/DealsService';
-import { JobsService} from './../../services/JobsService';
+import { DealsService} from '../../services/deals.service';
+import { JobsService} from '../../services/jobs.service';
 import {
       DevExtremeModule,
       DxSelectBoxModule,

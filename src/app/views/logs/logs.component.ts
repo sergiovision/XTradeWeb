@@ -6,10 +6,11 @@ import 'brace/theme/monokai';
 import 'brace/mode/markdown';
 import 'brace/mode/javascript';
 import 'brace/ext/language_tools.js';
-import { LogsService } from '../../services/LogsService';
+import { LogsService } from '../../services/logs.service';
 import 'jquery';
 import 'ms-signalr-client-jquery-3';
 import notify from 'devextreme/ui/notify';
+import { BaseComponent } from '../../base/base.component';
 declare var $: any;
 declare var jQuery: any;
 declare var require: any;
@@ -17,7 +18,7 @@ declare var require: any;
 @Component({
   templateUrl: 'logs.component.html'
 })
-export class LogsComponent implements AfterViewInit, OnInit {
+export class LogsComponent extends BaseComponent implements AfterViewInit, OnInit {
   // @ViewChild('editor') editor;
 
   // text: string = defaults.markdown;
@@ -33,7 +34,8 @@ export class LogsComponent implements AfterViewInit, OnInit {
   public text: string;
   public logS: LogsService;
   constructor( public logz: LogsService) {
-      this.logS = logz;
+    super();
+    this.logS = logz;
   }
 
   ngOnInit() {
@@ -41,16 +43,16 @@ export class LogsComponent implements AfterViewInit, OnInit {
 
     this.proxy = this.connection.createHubProxy('logsHub');
 
-    this.proxy.on('WriteLog', (message: string) => {
+    this.subs.sink = this.proxy.on('WriteLog', (message: string) => {
       this.text += message;
       // this.editor.execCommand('gotoend');
     });
-    this.proxy.on('WritesScopeLog', (scope: string, message: string) => {
+    this.subs.sink = this.proxy.on('WritesScopeLog', (scope: string, message: string) => {
       this.text += '***' + message + '***';
       // this.editor.execCommand('gotoend');
 
     });
-    this.connection.start({ jsonp: true })
+    this.subs.sink = this.connection.start({ jsonp: true })
     .done(() => {
       // console.log('Connected to LogsHub: ' + this.connection.id);
       this.proxy.invoke('getAllText').pipe((t) => {

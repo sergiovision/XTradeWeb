@@ -1,7 +1,7 @@
 import {async, ComponentFixture, fakeAsync, flush, flushMicrotasks, TestBed, tick, inject} from '@angular/core/testing';
 import {DebugElement} from '@angular/core';
 import { CapitalComponent } from './capital.component';
-import { WalletsService } from '../../../services/WalletsService';
+import { WalletsService } from '../../../services/wallets.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -15,7 +15,7 @@ describe('Capital Component', function() {
   let el: DebugElement;
   let walletsService: any;
 
-  
+
   beforeEach(() => {
 
     const walletsServiceSpy = jasmine.createSpyObj('WalletsService', ['testFunc'])
@@ -27,7 +27,7 @@ describe('Capital Component', function() {
           HttpClientTestingModule,
           DxChartModule,
           DxSelectBoxModule,
-          DxLoadPanelModule      
+          DxLoadPanelModule
       ],
 
       providers: [

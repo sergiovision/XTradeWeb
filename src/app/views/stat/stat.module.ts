@@ -7,8 +7,8 @@ import { DxChartModule, DxSelectBoxModule, DxLoadPanelModule } from 'devextreme-
 // Routing
 import { StatRoutingModule } from './stat-routing.module';
 import { CapitalComponent } from './capital/capital.component';
-import { WalletsService} from '../../services/WalletsService';
-import { DealsService} from '../../services/DealsService';
+import { WalletsService} from '../../services/wallets.service';
+import { DealsService} from '../../services/deals.service';
 import { SymbolsComponent } from './symbols/symbols.component';
 
 @NgModule({

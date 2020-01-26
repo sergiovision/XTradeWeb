@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { WalletsService } from '../../../services/WalletsService';
+import { WalletsService } from '../../../services/wallets.service';
 import notify from 'devextreme/ui/notify';
 import { TimeStat, SelectMonth } from '../../../models/Entities';
+import { BaseComponent } from '../../../base/base.component';
 
 let currMonth = 0;
 
@@ -9,7 +10,7 @@ let currMonth = 0;
   templateUrl: 'performance.component.html',
   styleUrls: ['performance.component.scss']
 })
-export class PerformanceComponent implements OnInit  {
+export class PerformanceComponent extends BaseComponent implements OnInit  {
   dataSource: TimeStat[];
   loadingVisible: boolean;
   currentMonth: number;
@@ -78,6 +79,7 @@ export class PerformanceComponent implements OnInit  {
 
 
   constructor(public wallet: WalletsService) {
+    super();
     this.loadingVisible = true;
     const now: Date = new Date();
     this.currentMonth = now.getMonth();
@@ -85,7 +87,7 @@ export class PerformanceComponent implements OnInit  {
 
   loadData() {
     this.loadingVisible = true;
-    this.wallet.getPerformance(this.currentMonth, 0) // 0 means daily
+    this.subs.sink = this.wallet.getPerformance(this.currentMonth, 0) // 0 means daily
       .subscribe(
           data => {
             this.dataSource = data;

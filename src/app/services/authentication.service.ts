@@ -4,7 +4,8 @@ import { BehaviorSubject, Observable, empty } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import notify from 'devextreme/ui/notify';
 import { UserToken } from '../models/Entities';
-import { BaseService } from './BaseService';
+import { BaseService } from './base.service';
+
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService extends BaseService {

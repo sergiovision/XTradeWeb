@@ -6,11 +6,18 @@
     keyExpr="Id"
     [masterDetail]="{ enabled: true, template: 'detail' }"
     [showBorders]="true"
-    >
+    (onCellClick)="onClickSymbolCell($event)">
     <dxo-paging [enabled]="false"></dxo-paging>
     <dxi-column dataField="Id" width="80" ></dxi-column>
     <dxi-column dataField="Name" width ="120" ></dxi-column>
-    <dxi-column dataField="MetaSymbol" width="120"></dxi-column>
+   <!-- <dxi-column dataField="MetaSymbol" width="120"></dxi-column> -->
+    <dxi-column [width]="160" caption="MetaSymbol Props" dataField="MetaSymbol" alignment="center"
+    cellTemplate="cellTemplateMS" [allowFiltering]="false" [allowSorting]="false">
+      <div *dxTemplate="let data of 'cellTemplateMS'">
+        <dx-button [width]="100">{{ data.value }}</dx-button>
+      </div>
+    </dxi-column>
+
     <dxi-column dataField="Retired" width="80" ></dxi-column>
     <dxi-column dataField="MasterAdviserId"></dxi-column>
 
@@ -48,11 +55,26 @@
 
 
 <dx-popup
+[width]="1000"
+[height]="650"
+showTitle="true"
+[title]="getCurrentTitle()"
+[closeOnOutsideClick]="true"
+[dragEnabled]="false"
+[(visible)]="showMetaSymProperties">
+    <dx-scroll-view #scrollView id="scrollview" scrollByContent="true" showScrollbar="always">
+        <app-properties #propsContainer entityName="MetaSymbol" entityType="4" [(parentVisible)]="showMetaSymProperties" >
+        </app-properties>
+    </dx-scroll-view>
+</dx-popup>
+
+
+<dx-popup
 class="popup"
 [width]="1200"
 [height]="650"
 [showTitle]="true"
-[title]="getCurrentAdviserText()" 
+[title]="getCurrentAdviserText()"
 [dragEnabled]="false"
 [closeOnOutsideClick]="false"
 [(visible)]="popupVisible">

@@ -1,4 +1,4 @@
-import { BaseService } from './BaseService';
+import { BaseService } from './base.service';
 import { Injectable } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { Observable } from 'rxjs';

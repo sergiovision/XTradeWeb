@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DealsService } from '../../../services/DealsService';
+import { DealsService } from '../../../services/deals.service';
 import { MetaSymbolStat } from '../../../models/Entities';
+import { BaseComponent } from '../../../base/base.component';
 
 export class SelectAccountType {
   id: number;
@@ -12,7 +13,7 @@ export class SelectAccountType {
   templateUrl: 'symbols.component.html',
   styleUrls: ['symbols.component.scss']
 })
-export class SymbolsComponent implements OnInit  {
+export class SymbolsComponent extends BaseComponent implements OnInit  {
   dataSource: MetaSymbolStat[];
   currentAccountType: number;
   loadingVisible: boolean;
@@ -29,6 +30,7 @@ export class SymbolsComponent implements OnInit  {
 
 
   constructor(public deals: DealsService) {
+    super();
     this.loadingVisible = true;
     this.currentAccountType = 0;
   }
@@ -36,7 +38,7 @@ export class SymbolsComponent implements OnInit  {
   loadData() {
     this.loadingVisible = true;
 
-    this.deals.getStat(this.currentAccountType)
+    this.subs.sink = this.deals.getStat(this.currentAccountType)
       .subscribe(
           data => {
             this.dataSource = data;
