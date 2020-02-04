@@ -15,7 +15,8 @@ import { DevExtremeModule,
   DxNumberBoxModule,
   DxTextAreaModule,
   DxCheckBoxModule,
-  DxSelectBoxModule } from 'devextreme-angular';
+  DxSelectBoxModule,
+  DxColorBoxModule } from 'devextreme-angular';
 
 // Routing
 import { TablesRoutingModule } from './tables-routing.module';
@@ -49,7 +50,8 @@ import { PropertiesComponent } from './properties/properties.component';
     DxTemplateModule,
     DxPopupModule,
     DxTextAreaModule,
-    FormsModule
+    FormsModule,
+    DxColorBoxModule
   ],
   declarations: [
     TablesComponent,

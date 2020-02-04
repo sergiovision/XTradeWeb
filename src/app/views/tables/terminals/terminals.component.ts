@@ -56,9 +56,8 @@ export class TerminalsComponent extends BaseComponent implements OnInit {
   public onClickCell(e) {
     const id: number = e.columnIndex;
     if ( id === 1 ) {
-        // this.showTerminalProperties = true;
         this.currentTerminal = e.data;
-        this.propsContainer.setData(this.currentTerminal.Id);
+        this.propsContainer.setData(this.currentTerminal.Id, 'Terminal', 6);
         return;
     }
     if ((id === 2) || (id === 3)) {

@@ -32,15 +32,21 @@
                 <dxi-column dataField="Id" width="80" ></dxi-column>
                 <dxi-column dataField="Name" width="180" ></dxi-column>
                 <dxi-column dataField="Broker" width="180"></dxi-column>
-                <dxi-column dataField="Symbol" width="120"></dxi-column>
+                <!-- <dxi-column dataField="Symbol" width="120"></dxi-column> -->
+                <dxi-column [width]="160" caption="Expert Props" dataField="Symbol" alignment="center"
+                  cellTemplate="cellTemplateEx" [allowFiltering]="false" [allowSorting]="false">
+                    <div *dxTemplate="let data of 'cellTemplateEx'">
+                      <dx-button [width]="100">{{ data.value }}</dx-button>
+                    </div>
+                </dxi-column>
                 <dxi-column dataField="Running" width="80" ></dxi-column>
                 <dxi-column dataField="Disabled" width="80"></dxi-column>
-                <dxi-column [width]="100" caption="Update"
+                <!-- <dxi-column [width]="100" caption="Update"
                     cellTemplate="cellTemplateUpdate" [allowFiltering]="false" [allowSorting]="false">
                     <div *dxTemplate="let data of 'cellTemplateUpdate'">
                       <dx-button text="Update"></dx-button>
                     </div>
-                </dxi-column>
+                </dxi-column> -->
         </dx-data-grid>
     </div>
 
@@ -61,14 +67,14 @@ showTitle="true"
 [title]="getCurrentTitle()"
 [closeOnOutsideClick]="true"
 [dragEnabled]="false"
-[(visible)]="showMetaSymProperties">
+[(visible)]="showProperties">
     <dx-scroll-view #scrollView id="scrollview" scrollByContent="true" showScrollbar="always">
-        <app-properties #propsContainer entityName="MetaSymbol" entityType="4" [(parentVisible)]="showMetaSymProperties" >
+        <app-properties #propsContainer [(parentVisible)]="showProperties" >
         </app-properties>
     </dx-scroll-view>
 </dx-popup>
 
-
+<!--
 <dx-popup
 class="popup"
 [width]="1200"
@@ -98,3 +104,4 @@ class="popup"
 </dx-scroll-view>
 
 </dx-popup>
+-->

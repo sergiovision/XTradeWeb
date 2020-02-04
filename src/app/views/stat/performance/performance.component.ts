@@ -3,6 +3,7 @@ import { WalletsService } from '../../../services/wallets.service';
 import notify from 'devextreme/ui/notify';
 import { TimeStat, SelectMonth } from '../../../models/Entities';
 import { BaseComponent } from '../../../base/base.component';
+import { element } from 'protractor';
 
 let currMonth = 0;
 
@@ -77,6 +78,33 @@ export class PerformanceComponent extends BaseComponent implements OnInit  {
     }
     ];
 
+  get MonthlyGains(): number {
+    if (this.dataSource === undefined) {
+      return 0;
+    }
+    let result = 0.0;
+    this.dataSource.forEach( el => {
+      result += el.Gains;
+    });
+    return result;
+  }
+
+
+  get MonthlyLosses(): number {
+    if (this.dataSource === undefined) {
+      return 0;
+    }
+    let result = 0.0;
+    this.dataSource.forEach(el => {
+      result += el.Losses;
+    });
+    return result;
+  }
+
+  get MonthlyResult(): string {
+    const result = this.MonthlyGains - this.MonthlyLosses;
+    return result.toFixed(2);
+  }
 
   constructor(public wallet: WalletsService) {
     super();

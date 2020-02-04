@@ -1,7 +1,7 @@
 import { BaseService } from './base.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { DynamicProperty, EntitiesEnum, DynamicPropertyDefinition, DynamicProperties } from '../models/Props';
+import { EntitiesEnum, DynamicPropertyDefinition, DynamicProperties } from '../models/Props';
 
 declare var require: any;
 
@@ -24,7 +24,7 @@ export class PropsService extends BaseService {
       return super.putWithParams(url, JSON.stringify(value));
     }
 
-    public getDefinitionsForEntity(entity: string): DynamicPropertyDefinition<any>[] {
+    public getDefinitionsForEntity(entity: string): any {
        const config = require('../../assets/propdefs.json');
        return config[entity];
     }

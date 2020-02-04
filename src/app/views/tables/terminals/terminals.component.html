@@ -46,7 +46,7 @@ showTitle="true"
 [dragEnabled]="false"
 [(visible)]="showTerminalProperties">
     <dx-scroll-view #scrollView id="scrollview" scrollByContent="true" showScrollbar="always">
-        <app-properties #propsContainer entityName="Terminal" entityType="6" [(parentVisible)]="showTerminalProperties">
+        <app-properties #propsContainer [(parentVisible)]="showTerminalProperties">
         </app-properties>
     </dx-scroll-view>
 </dx-popup>

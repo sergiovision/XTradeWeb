@@ -1,4 +1,4 @@
-<form>
+<form *ngIf="dataSource">
   <dx-button text="Save" (onClick)="updateProperty()"></dx-button>
   <div class="dx-field">
     <div class="dx-field-value">
@@ -67,13 +67,57 @@
           </div>
         </div>
       </div>
+      <div *ngSwitchCase="'GeneralCheckbox'">
+        <div class="dx-field">
+          <div class="dx-field-label">{{ def['name'] }}</div>
+          <dx-check-box
+              [name]="def['name']"
+              [(ngModel)]="dataSource[ def['name'] ].value"
+              >
+          </dx-check-box>
+        </div>
+      </div>
+      <div *ngSwitchCase="'GeneralColorbox'">
+        <div class="dx-field">
+          <div class="dx-field-label">{{ def['name'] }}</div>
+            <div class="dx-field-value">
+                <dx-color-box
+                [name]="def['name']"
+                [(ngModel)]="dataSource[ def['name'] ].value">
+                </dx-color-box>
+            </div>
+          </div>
+      </div>
+      <div *ngSwitchCase="'GenericEnum'">
+        <div class="dx-field">
+          <div class="dx-field-label">{{ def['name'] }}</div>
+          <div class="dx-field-value">
+            <dx-select-box
+              [name]="def['name']"
+              [(ngModel)]="dataSource[ def['name'] ].value"
+              valueExpr="ID"
+              displayExpr="name"
+              [items]="def['items']">
+            </dx-select-box>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="'GeneralTime'">
+        <div class="dx-field">
+          <div class="dx-field-label">{{ def['name'] }}</div>
+          <div class="dx-field-value">
+            <dx-date-box
+              [name]="def['name']"
+              [(ngModel)]="dataSource[ def['name'] ].value"
+              type="time">
+            </dx-date-box>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <!--  <dx-check-box
-              [value]="false"
-              text="Limit text length">
-          </dx-check-box>
-
+    <!--
     <div class="dx-fieldset">
       <div class="dx-fieldset-header">Event Handling and API</div>
       <div class="dx-field">

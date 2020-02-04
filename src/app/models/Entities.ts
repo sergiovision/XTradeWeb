@@ -30,7 +30,6 @@ export class Adviser {
     Timeframe: number;
     Lastupdate: Date;
     CloseReason: number;
-    State: string;
     Running: boolean;
     Disabled: boolean;
     ClusterId: number;
@@ -185,6 +184,8 @@ export class TimeStat {
   InvestingValue: number;
   CheckingChange: number;
   InvestingChange: number;
+  Gains: number;
+  Losses: number;
 }
 
 export class SelectYear {

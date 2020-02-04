@@ -20,8 +20,8 @@ export enum EntitiesEnum {
 
 export interface DynamicProperty<T> {
     type: string;
-    name: string;
-    group: string;
+    // name: string;
+    // group: string;
     value: T;
 }
 
