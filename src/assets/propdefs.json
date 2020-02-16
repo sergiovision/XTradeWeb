@@ -147,21 +147,21 @@
             "description": "Bricks Size"
           },
           { "type": "double",
-            "name": "retracementFactor",
+            "name": "retraceFactor",
             "group": "Renko",
             "control": "GeneralDouble",
-            "defaultValue": 0.25,
+            "defaultValue": 1.0,
             "description": "Retracement Factor"
           },
           { "type": "boolean",
-            "name": "symetricalReversals",
+            "name": "symReversals",
             "group": "Renko",
             "control": "GeneralCheckbox",
             "defaultValue": false,
             "description": "symetricalReversals boolean"
           },
           { "type": "boolean",
-            "name": "showWicks",
+            "name": "Wicks",
             "group": "Renko",
             "control": "GeneralCheckbox",
             "defaultValue": true,
@@ -351,9 +351,36 @@
             "control": "GeneralDouble",
             "defaultValue": 1.6,
             "description": "Bands Deviation"
+          },
+          { "type": "boolean",
+            "name": "EnableBBands",
+            "group": "Indicators",
+            "control": "GeneralCheckbox",
+            "defaultValue": false,
+            "description": "Add/Remove BBands indicator on chart"
+          },
+          { "type": "boolean",
+            "name": "EnableStochastic",
+            "group": "Indicators",
+            "control": "GeneralCheckbox",
+            "defaultValue": false,
+            "description": "Add/Remove Stochastic indicator on chart"
+          },
+          { "type": "boolean",
+            "name": "EnableRSI",
+            "group": "Indicators",
+            "control": "GeneralCheckbox",
+            "defaultValue": false,
+            "description": "Add/Remove RSI indicator on chart"
+          },
+          { "type": "boolean",
+            "name": "EnableHistogram",
+            "group": "Indicators",
+            "control": "GeneralCheckbox",
+            "defaultValue": false,
+            "description": "Add/Remove Price Histogram on chart"
           }
-
-        ]
+       ]
 
     },
     "Symbol": {

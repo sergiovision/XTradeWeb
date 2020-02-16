@@ -9,8 +9,18 @@
           "type": "chrome",
           "request": "launch",
           "name": "Launch Chrome",
+          // "sourceMaps": true,
           "url": "http://localhost:4200",
-          "webRoot": "${workspaceFolder}"
+          "webRoot": "${workspaceFolder}",
+          // "preLaunchTask": "npm: start",
+          // "trace": true,
+          // "sourceMapPathOverrides": {
+          //  "webpack:///./*": "${webRoot}/*",
+          //  "webpack:///src/*": "${webRoot}/*",
+          //  "webpack:///*": "*",
+          //  "webpack:///./~/*": "${webRoot}/node_modules/*",
+          //  "meteor://💻app/*": "${webRoot}/*"
+          // }
         },
         {
           "type": "devtools-for-chrome",

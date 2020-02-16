@@ -11,7 +11,7 @@ import { BaseComponent } from '../../../base/base.component';
 
 export class CapitalComponent extends BaseComponent implements OnInit, AfterViewInit  {
 
-  @ViewChild('walletChart', {static: false}) walletChart: DxChartComponent;
+  @ViewChild('walletChart') walletChart: DxChartComponent;
 
   dataSource: Wallet[];
 

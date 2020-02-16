@@ -5,7 +5,8 @@
 
 export const environment = {
   production: false,
-  baseURL: "http://VMSERG:2013",
+  baseURL: 'http://VMSERG:2013',
+//  baseURL: "http://localhost:6569",
   dateFormat: "yyyy-MM-dd'T'HH:mm:ss'Z'",
-  shortDateFormat: "yyyy-MM-dd"
+  shortDateFormat: 'yyyy-MM-dd'
 };

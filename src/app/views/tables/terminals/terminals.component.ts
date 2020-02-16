@@ -15,7 +15,7 @@ export class TerminalsComponent extends BaseComponent implements OnInit {
   showDisabled: boolean;
   showTerminalProperties = false;
   currentTerminal: Terminal;
-  @ViewChild(PropertiesComponent, {static: false}) propsContainer: PropertiesComponent;
+  @ViewChild(PropertiesComponent) propsContainer: PropertiesComponent;
 
   constructor(public terminals: TerminalsService) {
     super();

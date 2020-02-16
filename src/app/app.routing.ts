@@ -64,17 +64,17 @@ export const routes: Routes = [
       {
         path: 'logs',
         canActivate: [AuthGuard],
-        loadChildren: './views/logs/logs.module#LogsModule'
+        loadChildren: () => import('./views/logs/logs.module').then(m => m.LogsModule)
       },
       {
         path: 'stat',
         canActivate: [AuthGuard],
-        loadChildren: './views/stat/stat.module#StatModule'
+        loadChildren: () => import('./views/stat/stat.module').then(m => m.StatModule)
       },
       {
         path: 'dashboard',
         canActivate: [AuthGuard],
-        loadChildren: './views/dashboard/dashboard.module#DashboardModule'
+        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
     /* 
       {
@@ -86,7 +86,7 @@ export const routes: Routes = [
       {
         path: 'tables',
         canActivate: [AuthGuard],
-        loadChildren: './views/tables/tables.module#TablesModule'
+        loadChildren: () => import('./views/tables/tables.module').then(m => m.TablesModule)
       }
     ]
   }

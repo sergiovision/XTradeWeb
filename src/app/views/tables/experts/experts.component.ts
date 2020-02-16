@@ -23,7 +23,7 @@ export class ExpertsComponent extends BaseComponent implements OnInit {
   colCountByScreen: Object;
   currentEntityName: string;
   currentEntityType: number;
-  @ViewChild(PropertiesComponent, {static: false}) propsContainer: PropertiesComponent;
+  @ViewChild(PropertiesComponent) propsContainer: PropertiesComponent;
 
   constructor(public experts: ExpertsService) {
     super();
