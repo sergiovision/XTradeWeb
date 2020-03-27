@@ -156,7 +156,7 @@ export const navItems = [
         icon: 'icon-settings'
       },
       {
-        name: 'Tables Summary',
+        name: 'Symbols Chart',
         url: '/tables/tables',
         icon: 'icon-list'
       },

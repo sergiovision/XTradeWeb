@@ -146,19 +146,14 @@
             "defaultValue": 100,
             "description": "Bricks Size"
           },
-          { "type": "double",
-            "name": "retraceFactor",
+          { "type": "integer",
+            "name": "RenkoType",
             "group": "Renko",
-            "control": "GeneralDouble",
-            "defaultValue": 1.0,
-            "description": "Retracement Factor"
-          },
-          { "type": "boolean",
-            "name": "symReversals",
-            "group": "Renko",
-            "control": "GeneralCheckbox",
-            "defaultValue": false,
-            "description": "symetricalReversals boolean"
+            "control": "GenericEnum",
+            "defaultValue": 3,
+            "items": [ {"ID":0, "name": "cbtCustom"}, {"ID": 1,"name": "cbtRenko" }, {"ID":2, "name": "cbtMedianRenko"},
+              {"ID":3, "name": "cbtPointO"}, {"ID":4, "name": "cbtTurboRenko075"},{"ID":5, "name": "cbtHybridRenko075"} ],
+            "description": "Renko Type"
           },
           { "type": "boolean",
             "name": "Wicks",
