@@ -3,13 +3,7 @@ export const navItems = [
     name: 'Dashboard',
     url: '/dashboard',
     icon: 'icon-speedometer'
-
   },
-  /*,
-  {
-    title: true,
-    name: 'Theme'
-  },*/
   {
     title: true,
     name: 'Components'
@@ -18,26 +12,6 @@ export const navItems = [
     name: 'Logs',
     url: '/logs',
     icon: 'fa fa-code',
-    /* children: [
-      {
-        name: 'Text Editors',
-        url: '/editors/text-editors',
-        icon: 'icon-note',
-        badge: {
-          variant: 'danger',
-          text: 'PRO'
-        }
-      },
-      {
-        name: 'Code Editors',
-        url: '/editors/code-editors',
-        icon: 'fa fa-code',
-        badge: {
-          variant: 'danger',
-          text: 'PRO'
-        }
-      }
-    ] */
   },
   /* {
     name: 'Forms',
@@ -113,18 +87,6 @@ export const navItems = [
       }
     ]
   },
-  /*{
-    name: 'News',
-    url: '/news',
-    icon: 'icon-energy',
-    children: [
-      {
-        name: 'All News',
-        url: '/news/calendar',
-        icon: 'icon-calendar',
-      }
-    ]
-  },*/
   {
     name: 'Tables',
     url: '/tables',
@@ -154,12 +116,13 @@ export const navItems = [
         name: 'Experts',
         url: '/tables/experts',
         icon: 'icon-settings'
-      },
-      {
-        name: 'Symbols Chart',
-        url: '/tables/tables',
-        icon: 'icon-list'
-      },
+      }
     ]
+  },
+  {
+    name: 'Chart',
+    url: '/chart',
+    icon: 'icon-graph'
   }
+
 ];

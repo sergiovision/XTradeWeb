@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TablesComponent } from './tables.component';
 import { TerminalsComponent } from './terminals/terminals.component';
 import { JobsComponent } from './jobs/jobs.component';
 import { WalletsComponent } from './wallets/wallets.component';
@@ -48,14 +47,7 @@ const routes: Routes = [
         data: {
           title: 'Experts'
         }
-      },
-      {
-        path: 'tables',
-        component: TablesComponent,
-        data: {
-          title: 'Tables Info'
-        }
-      },
+      }
     ]
   }
 ];

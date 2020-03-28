@@ -1,30 +1,20 @@
-import {
-  Component,
-  OnInit,
-  ViewChild
-} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import 'jquery';
 // https://github.com/PaulGiletich/ms-signalr-client
 import 'ms-signalr-client-jquery-3';
 
-import {
-  Router
-} from '@angular/router';
+import { Router } from '@angular/router';
 
 import { UserToken, PositionInfo, TodayStat } from '../../models/Entities';
 
 import { DealsService } from '../../services/deals.service';
 
-import {
-  JobsService
-} from '../../services/jobs.service';
+import { JobsService } from '../../services/jobs.service';
 
 import CustomStore from 'devextreme/data/custom_store';
 import notify from 'devextreme/ui/notify';
-import {
-  DxDataGridComponent
-} from 'devextreme-angular';
+import { DxDataGridComponent } from 'devextreme-angular';
 import { BaseComponent } from '../../base/base.component';
 
 declare var $: any;
@@ -68,27 +58,33 @@ export class DashboardComponent extends BaseComponent implements OnInit {
     this.proxy = this.connection.createHubProxy('terminalsHub');
 
     this.subs.sink = this.proxy.on('UpdatePosition', (data: any) => {
-      this.store.push([{
-        type: 'update',
-        key: data.Ticket,
-        data: data
-      }]);
+      this.store.push([
+        {
+          type: 'update',
+          key: data.Ticket,
+          data: data
+        }
+      ]);
     });
 
     this.subs.sink = this.proxy.on('RemovePosition', (data: number) => {
-      this.store.push([{
-        type: 'remove',
-        key: data
-      }]);
+      this.store.push([
+        {
+          type: 'remove',
+          key: data
+        }
+      ]);
       this.UpdateDeals();
       // this.positionsContainer.instance.repaint();
     });
 
     this.subs.sink = this.proxy.on('InsertPosition', (data: any) => {
-      this.store.push([{
-        type: 'insert',
-        data: data
-      }]);
+      this.store.push([
+        {
+          type: 'insert',
+          data: data
+        }
+      ]);
       // this.positionsContainer.instance.repaint();
     });
 
@@ -98,7 +94,8 @@ export class DashboardComponent extends BaseComponent implements OnInit {
     });
 
     // atempt connection, and handle errors
-    this.subs.sink = this.connection.start({
+    this.subs.sink = this.connection
+      .start({
         jsonp: true
       })
       .done(() => {
@@ -110,7 +107,6 @@ export class DashboardComponent extends BaseComponent implements OnInit {
       .fail(() => {
         notify('Could not connect to Terminals Hub');
       });
-
   }
 
   public UpdateDeals() {
@@ -124,13 +120,14 @@ export class DashboardComponent extends BaseComponent implements OnInit {
     //  });
 
     this.subs.sink = this.deals.getTodayStat().subscribe(
-        data => {
-          this.stat = data;
-        },
-        error => {
-            const message = JSON.stringify( error.error) + '\n' + error.statusText;
-            console.log(message);
-        });
+      data => {
+        this.stat = data;
+      },
+      error => {
+        const message = JSON.stringify(error.error) + '\n' + error.statusText;
+        console.log(message);
+      }
+    );
   }
 
   public onClickCell(e) {
@@ -144,7 +141,8 @@ export class DashboardComponent extends BaseComponent implements OnInit {
         error => {
           const message = JSON.stringify(error.error) + '\n' + error.statusText;
           notify(message);
-        });
+        }
+      );
       return;
     }
   }
@@ -157,7 +155,8 @@ export class DashboardComponent extends BaseComponent implements OnInit {
       error => {
         const message = JSON.stringify(error.error) + '\n' + error.statusText;
         notify(message);
-      });
+      }
+    );
   }
 
   public syncAll() {
@@ -168,23 +167,25 @@ export class DashboardComponent extends BaseComponent implements OnInit {
       error => {
         const message = JSON.stringify(error.error) + '\n' + error.statusText;
         notify(message);
-      });
+      }
+    );
   }
 
   onToolbarPreparing(e) {
-    e.toolbarOptions.items.unshift({
+    e.toolbarOptions.items.unshift(
+      {
         location: 'before',
         template: 'totalStat'
-    },
-    {
-      location: 'after',
-      widget: 'dxButton',
-      options: {
+      },
+      {
+        location: 'after',
+        widget: 'dxButton',
+        options: {
           width: 120,
           text: 'Refresh All',
           onClick: this.refreshAll.bind(this)
-      }}
-      );
-}
-
+        }
+      }
+    );
+  }
 }

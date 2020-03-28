@@ -1,20 +1,22 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Inject } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Inject, Input } from '@angular/core';
 import { DefaultLayoutComponent } from '../../containers';
 
 declare const TradingView: any;
 
 @Component({
-  templateUrl: 'tables.component.html',
-  styleUrls: ['tables.component.scss']
+  selector: 'app-tview',
+  templateUrl: 'tview.component.html',
+  styleUrls: ['tview.component.css']
 })
-export class TablesComponent implements OnInit, AfterViewInit {
+export class TviewComponent implements OnInit, AfterViewInit {
+
+  @Input() symbol: string;
 
   public height: number;
 
   constructor(@Inject(DefaultLayoutComponent) private parentView: DefaultLayoutComponent) {
-    this.height = this.parentView.mainView.nativeElement.offsetHeight;
-
-    console.log('MainView height: ' + this.height);
+    this.height =  this.parentView.mainView.nativeElement.offsetHeight;
+    console.log('MainView height: ' + this.height + ', Symbol: ' + this.symbol);
   }
 
   ngOnInit(): void {
@@ -27,7 +29,7 @@ export class TablesComponent implements OnInit, AfterViewInit {
     new TradingView.widget({
       'container_id': 'technical-analysis',
       'autosize': true,
-      'symbol': 'BTCUSD',
+      'symbol': this.symbol,
       'interval': '120',
       'timezone': 'exchange',
       'theme': 'Light',
@@ -43,4 +45,5 @@ export class TablesComponent implements OnInit, AfterViewInit {
       'show_popup_button': true
     });
   }
+
 }

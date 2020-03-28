@@ -2,10 +2,7 @@
   <dx-button text="Save" (onClick)="updateProperty()"></dx-button>
   <div class="dx-field">
     <div class="dx-field-value">
-      <dx-date-box
-          [value]="this.UpdatedProperty"
-          type="datetime"
-          [disabled]="true">
+      <dx-date-box [value]="this.UpdatedProperty" type="datetime" [disabled]="true">
       </dx-date-box>
     </div>
   </div>
@@ -18,12 +15,9 @@
         <div class="dx-field">
           <div class="dx-field-label">{{ def['name'] }}</div>
           <div class="dx-field-value">
-            <dx-number-box #doubleNumberBox="ngModel"
-                format="#0.####"
-                [(ngModel)]="dataSource[ def['name'] ].value"
-                  [name]="def['name']"
-                  showSpinButtons="true">
-            ></dx-number-box>
+            <dx-number-box #doubleNumberBox="ngModel" format="#0.####" [(ngModel)]="dataSource[ def['name'] ].value"
+              [name]="def['name']" showSpinButtons="true">
+              ></dx-number-box>
           </div>
         </div>
       </div>
@@ -31,12 +25,9 @@
         <div class="dx-field">
           <div class="dx-field-label">{{ def['name'] }}</div>
           <div class="dx-field-value">
-              <dx-number-box #labelBox="ngModel"
-                  [ngModel]="dataSource[ def['name'] ].value"
-                  [name]="def['name']"
-                  [disabled]="true"
-                  showSpinButtons="false">
-              </dx-number-box>
+            <dx-number-box #labelBox="ngModel" [ngModel]="dataSource[ def['name'] ].value" [name]="def['name']"
+              [disabled]="true" showSpinButtons="false">
+            </dx-number-box>
           </div>
         </div>
       </div>
@@ -44,11 +35,9 @@
         <div class="dx-field">
           <div class="dx-field-label">{{ def['name'] }}</div>
           <div class="dx-field-value">
-              <dx-number-box #numberBox="ngModel"
-                  [(ngModel)]="dataSource[ def['name'] ].value"
-                  [name]="def['name']"
-                  showSpinButtons="true">
-              </dx-number-box>
+            <dx-number-box #numberBox="ngModel" [(ngModel)]="dataSource[ def['name'] ].value" [name]="def['name']"
+              showSpinButtons="true">
+            </dx-number-box>
           </div>
         </div>
       </div>
@@ -56,13 +45,8 @@
         <div class="dx-field-label">{{ def['name'] }}</div>
         <div class="dx-field-value">
           <div class="dx-field">
-            <dx-text-area
-            #textArea="ngModel"
-            [name]="def['name']"
-            [(ngModel)]="dataSource[ def['name'] ].value"
-            height="60"
-            [disabled]="false"
-            (onValueChanged)="onValueChanged($event)">
+            <dx-text-area #textArea="ngModel" [name]="def['name']" [(ngModel)]="dataSource[ def['name'] ].value"
+              height="60" [disabled]="false" (onValueChanged)="onValueChanged($event)">
             </dx-text-area>
           </div>
         </div>
@@ -70,34 +54,25 @@
       <div *ngSwitchCase="'GeneralCheckbox'">
         <div class="dx-field">
           <div class="dx-field-label">{{ def['name'] }}</div>
-          <dx-check-box
-              [name]="def['name']"
-              [(ngModel)]="dataSource[ def['name'] ].value"
-              >
+          <dx-check-box [name]="def['name']" [(ngModel)]="dataSource[ def['name'] ].value">
           </dx-check-box>
         </div>
       </div>
       <div *ngSwitchCase="'GeneralColorbox'">
         <div class="dx-field">
           <div class="dx-field-label">{{ def['name'] }}</div>
-            <div class="dx-field-value">
-                <dx-color-box
-                [name]="def['name']"
-                [(ngModel)]="dataSource[ def['name'] ].value">
-                </dx-color-box>
-            </div>
+          <div class="dx-field-value">
+            <dx-color-box [name]="def['name']" [(ngModel)]="dataSource[ def['name'] ].value">
+            </dx-color-box>
           </div>
+        </div>
       </div>
       <div *ngSwitchCase="'GenericEnum'">
         <div class="dx-field">
           <div class="dx-field-label">{{ def['name'] }}</div>
           <div class="dx-field-value">
-            <dx-select-box
-              [name]="def['name']"
-              [(ngModel)]="dataSource[ def['name'] ].value"
-              valueExpr="ID"
-              displayExpr="name"
-              [items]="def['items']">
+            <dx-select-box [name]="def['name']" [(ngModel)]="dataSource[ def['name'] ].value" valueExpr="ID"
+              displayExpr="name" [items]="def['items']">
             </dx-select-box>
           </div>
         </div>
@@ -106,10 +81,7 @@
         <div class="dx-field">
           <div class="dx-field-label">{{ def['name'] }}</div>
           <div class="dx-field-value">
-            <dx-date-box
-              [name]="def['name']"
-              [(ngModel)]="dataSource[ def['name'] ].value"
-              type="time">
+            <dx-date-box [name]="def['name']" [(ngModel)]="dataSource[ def['name'] ].value" type="time">
             </dx-date-box>
           </div>
         </div>
@@ -117,46 +89,5 @@
 
     </div>
 
-    <!--
-    <div class="dx-fieldset">
-      <div class="dx-fieldset-header">Event Handling and API</div>
-      <div class="dx-field">
-          <div class="dx-field-label">Synchronize text areas </div>
-          <div class="dx-field-value">
-              <dx-select-box
-                  [items]="dataSource"
-                  valueExpr="name"
-                  displayExpr="title"
-                  [(value)]="dataSource">
-              </dx-select-box>
-          </div>
-        </div>
-    </div>
-    <div class="dx-fieldset">
-        <div class="dx-fieldset-header">Event Handling</div>
-        <div class="dx-field">
-            <div class="dx-field-label">This month sales</div>
-            <div class="dx-field-value">
-                <dx-number-box #numberBox
-                    [max]="30"
-                    [min]="0"
-                    [showSpinButtons]="true"
-                    [value]="16"
-                ></dx-number-box>
-            </div>
-        </div>
-        <div class="dx-field">
-            <div class="dx-field-label">Stock</div>
-            <div class="dx-field-value">
-                <dx-number-box
-                    [min]="0"
-                    [showSpinButtons]="false"
-                    [readOnly]="true"
-                    [value]="numberBox.max - numberBox.value"
-                ></dx-number-box>
-            </div>
-        </div>
-    </div>
-  -->
   </div>
 </form>

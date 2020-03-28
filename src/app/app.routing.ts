@@ -1,4 +1,3 @@
-// import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -11,6 +10,7 @@ import { LoginComponent } from './views/login/login.component';
 import { LogoutComponent } from './views/logout/logout.component';
 import { RegisterComponent } from './views/register/register.component';
 import { AuthGuard } from './guards/AuthGuard';
+import { ChartComponent } from './views/chart/chart.component';
 
 export const routes: Routes = [
   {
@@ -62,6 +62,11 @@ export const routes: Routes = [
     },
     children: [
       {
+        path: 'dashboard',
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
+      },
+      {
         path: 'logs',
         canActivate: [AuthGuard],
         loadChildren: () => import('./views/logs/logs.module').then(m => m.LogsModule)
@@ -72,28 +77,21 @@ export const routes: Routes = [
         loadChildren: () => import('./views/stat/stat.module').then(m => m.StatModule)
       },
       {
-        path: 'dashboard',
-        canActivate: [AuthGuard],
-        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
-      },
-    /* 
-      {
-        path: 'news',
-        canActivate: [AuthGuard],
-        loadChildren: './views/news/news.module#NewsModule'
-      }, 
-      */
-      {
         path: 'tables',
         canActivate: [AuthGuard],
         loadChildren: () => import('./views/tables/tables.module').then(m => m.TablesModule)
+      },
+      {
+        path: 'chart',
+        component: ChartComponent
+
       }
     ]
   }
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}

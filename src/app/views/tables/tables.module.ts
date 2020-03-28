@@ -1,7 +1,6 @@
 import { ExpertsService } from '../../services/experts.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TablesComponent } from './tables.component';
 import { FormsModule } from '@angular/forms';
 import { DevExtremeModule,
   DxTextBoxModule,
@@ -32,6 +31,7 @@ import { ExpertsComponent } from './experts/experts.component';
 import { PropsService } from '../../services/props.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { PropertiesComponent } from './properties/properties.component';
+import { DxFormModule } from 'devextreme-angular';
 
 @NgModule({
   imports: [
@@ -51,10 +51,10 @@ import { PropertiesComponent } from './properties/properties.component';
     DxPopupModule,
     DxTextAreaModule,
     FormsModule,
-    DxColorBoxModule
+    DxColorBoxModule,
+    DxFormModule
   ],
   declarations: [
-    TablesComponent,
     TerminalsComponent,
     JobsComponent,
     WalletsComponent,

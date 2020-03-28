@@ -6,6 +6,7 @@ import { Adviser, ExpertCluster } from '../../../models/Entities';
 import { BaseComponent } from '../../../base/base.component';
 import { PropertiesComponent } from '../properties/properties.component';
 import { EntitiesEnum } from '../../../models/Props';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './experts.component.html',
@@ -19,13 +20,12 @@ export class ExpertsComponent extends BaseComponent implements OnInit {
   currentMetaSymbol: number;
   currentAdviser: Adviser;
   currentCluster: ExpertCluster;
-  // adviserState: Dictionary<any> = {};
   colCountByScreen: Object;
   currentEntityName: string;
   currentEntityType: number;
   @ViewChild(PropertiesComponent) propsContainer: PropertiesComponent;
 
-  constructor(public experts: ExpertsService) {
+  constructor(public experts: ExpertsService, private router: Router) {
     super();
     this.showDisabled = true;
     this.colCountByScreen = { md: 4, sm: 2 };
@@ -88,21 +88,13 @@ export class ExpertsComponent extends BaseComponent implements OnInit {
         this.propsContainer.setData(this.currentAdviser.Id, 'Adviser', 3);
         return;
      }
-     // if (id === 6) {
-     //  this.currentAdviser = e.data;
-     //  this.adviserState = JSON.parse(this.currentAdviser.State);
-     //  this.popupVisible = true;
-     //  return;
-     // }
+
    }
 
    public onClickSymbolCell(e) {
     const id: number = e.columnIndex;
     if (id === 3) {
-      // this.showMetaSymProperties = true;
       this.currentCluster = e.data;
-      // console.log('Current data: ');
-      // console.log(this.currentCluster.MetaSymbolId);
 
       this.currentMetaSymbol = this.currentCluster.MetaSymbolId;
       this.propsContainer.setData(this.currentMetaSymbol, 'MetaSymbol', 4);

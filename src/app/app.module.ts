@@ -9,7 +9,8 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DevExtremeModule } from 'devextreme-angular';
 import { DatePipe } from '@angular/common';
-import {DxSelectBoxModule,
+import {
+  DxSelectBoxModule,
   DxCheckBoxModule,
   DxTextBoxModule,
   DxDateBoxModule,
@@ -17,7 +18,8 @@ import {DxSelectBoxModule,
   DxValidatorModule,
   DxValidationSummaryModule,
   DxDataGridModule,
-  DxTemplateModule } from 'devextreme-angular';
+  DxTemplateModule
+} from 'devextreme-angular';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -34,18 +36,9 @@ import { LoginComponent } from './views/login/login.component';
 import { LogoutComponent } from './views/logout/logout.component';
 import { RegisterComponent } from './views/register/register.component';
 
-const APP_CONTAINERS = [
-  DefaultLayoutComponent
-];
+const APP_CONTAINERS = [DefaultLayoutComponent];
 
-
-import {
-  AppAsideModule,
-  AppBreadcrumbModule,
-  AppHeaderModule,
-  AppFooterModule,
-  AppSidebarModule,
-} from '@coreui/angular';
+import { AppAsideModule, AppBreadcrumbModule, AppHeaderModule, AppFooterModule, AppSidebarModule } from '@coreui/angular';
 
 // Import routing module
 import { AppRoutingModule } from './app.routing';
@@ -61,6 +54,8 @@ import { JwtInterceptor } from './helpers/JwtInterceptior';
 import { ErrorInterceptor } from './helpers/ErrorInterceptor';
 import { AuthGuard } from './guards/AuthGuard';
 import { BaseComponent } from './base/base.component';
+import { TviewComponent } from './views/tview/tview.component';
+import { ChartComponent } from './views/chart/chart.component';
 
 @NgModule({
   imports: [
@@ -97,32 +92,26 @@ import { BaseComponent } from './base/base.component';
     P500Component,
     LoginComponent,
     LogoutComponent,
-    RegisterComponent
+    RegisterComponent,
+    ChartComponent,
+    TviewComponent
   ],
   providers: [
-  {
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy,
-  },
-  AlertService,
-  AuthenticationService,
-  JwtInterceptor,
-  AuthGuard,
-  DatePipe,
-  PersonService,
-  {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
-      multi: true
-  },
-  { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-  { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    },
+    AlertService,
+    AuthenticationService,
+    JwtInterceptor,
+    AuthGuard,
+    DatePipe,
+    PersonService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
-  exports: [
-    FormsModule,
-    ReactiveFormsModule
-  ],
-  bootstrap: [ AppComponent ]
+  exports: [FormsModule, ReactiveFormsModule],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

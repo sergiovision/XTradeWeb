@@ -1,79 +1,79 @@
-  <div>
-    <dx-data-grid #positionsContainer id="positionsContainer" [dataSource]="dataSource" [showBorders]="true"
-      [columnHidingEnabled]="true"
-      [repaintChangesOnly]="true" [highlightChanges]="true"
-      (onCellClick)="onClickCell($event)"
-      (onToolbarPreparing)="onToolbarPreparing($event)">
-      <dxo-paging [enabled]="true"></dxo-paging>
-      <dxo-selection mode="single"></dxo-selection>
-      <dxi-column dataField="Ticket" [allowSorting]="true" [hidingPriority]="2">
-      </dxi-column>
-      <dxi-column dataField="Role" caption="Role" [allowSorting]="true" groupIndex="0"></dxi-column>
+<div>
+  <dx-data-grid #positionsContainer id="positionsContainer" [dataSource]="dataSource" [showBorders]="true"
+    [columnHidingEnabled]="true" [repaintChangesOnly]="true" [highlightChanges]="true"
+    (onCellClick)="onClickCell($event)" (onToolbarPreparing)="onToolbarPreparing($event)">
+    <dxo-paging [enabled]="true"></dxo-paging>
+    <dxo-selection mode="single"></dxo-selection>
+    <dxi-column dataField="Ticket" [allowSorting]="true" [hidingPriority]="2">
+    </dxi-column>
+    <dxi-column dataField="Role" caption="Role" [allowSorting]="true" groupIndex="0"></dxi-column>
 
-      <dxi-column dataField="AccountName" caption="Account Type" [allowSorting]="true" sortOrder="asc"></dxi-column>
-      <dxi-column dataField="Symbol" [allowSorting]="true" cellTemplate="symbolCellTemplate">
-      </dxi-column>
+    <dxi-column dataField="AccountName" caption="Account Type" [allowSorting]="true" sortOrder="asc"></dxi-column>
+    <dxi-column dataField="Symbol" [allowSorting]="true" cellTemplate="symbolCellTemplate">
+    </dxi-column>
 
-      <dxi-column dataField="Lots" [allowSorting]="true" [hidingPriority]="1"></dxi-column>
-      <dxi-column dataField="ProfitStopsPercent" caption="%" format="#0.##'%'" [allowSorting]="true" cellTemplate="priceCellTemplate"
-                  [hidingPriority]="3">
-        <dxo-format type="fixedPoint" [precision]="2"></dxo-format>
-      </dxi-column>
-      <dxi-column dataField="Profit" caption="$" format="#0.##" [allowSorting]="true" cellTemplate="priceCellTemplate">
-        <dxo-format type="fixedPoint" [precision]="2"></dxo-format>
-      </dxi-column>
+    <dxi-column dataField="Lots" [allowSorting]="true" [hidingPriority]="1"></dxi-column>
+    <dxi-column dataField="ProfitStopsPercent" caption="%" format="#0.##'%'" [allowSorting]="true"
+      cellTemplate="priceCellTemplate" [hidingPriority]="3">
+      <dxo-format type="fixedPoint" [precision]="2"></dxo-format>
+    </dxi-column>
+    <dxi-column dataField="Profit" caption="$" format="#0.##" [allowSorting]="true" cellTemplate="priceCellTemplate">
+      <dxo-format type="fixedPoint" [precision]="2"></dxo-format>
+    </dxi-column>
 
-      <dxi-column [width]="160" caption="Commands" cellTemplate="cellTemplateClose" [allowFiltering]="false"
-        [allowSorting]="false" [hidingPriority]="4">
-      </dxi-column>
+    <dxi-column [width]="160" caption="Commands" cellTemplate="cellTemplateClose" [allowFiltering]="false"
+      [allowSorting]="false" [hidingPriority]="4">
+    </dxi-column>
 
-      <div *dxTemplate="let data of 'cellTemplateClose'">
-        <dx-button text="Close"></dx-button>
+    <div *dxTemplate="let data of 'cellTemplateClose'">
+      <dx-button text="Close"></dx-button>
+    </div>
+
+    <div *dxTemplate="let cell of 'priceCellTemplate'" [class.inc]="cell.data.Profit > 0"
+      [class.dec]="cell.data.Profit < 0">
+      <span>{{cell.text}}</span>
+    </div>
+
+    <div *dxTemplate="let cell of 'symbolCellTemplate'" [class.inc]="cell.data.Type === 0"
+      [class.dec]="cell.data.Type === 1">
+      <span class="arrow"></span>
+      <span class="current-value">{{cell.text}}</span>
+    </div>
+
+    <div *dxTemplate="let data of 'totalStat'">
+      <div>
+        <span [class.inc]="this.stat.TodayGainReal > 0" [class.dec]="this.stat.TodayGainReal < 0">Real:
+          ${{this.stat.TodayGainReal}} </span>
+        <span [class.inc]="this.stat.TodayGainDemo > 0" [class.dec]="this.stat.TodayGainDemo < 0">Demo:
+          ${{this.stat.TodayGainDemo}} </span>
+        <span>Risk: %{{(this.stat.RISK_PER_DAY*100).toFixed(2)}} %{{(this.stat.DAILY_MIN_GAIN*100).toFixed(2) }}
+          %{{(this.stat.DAILY_LOSS_AFTER_GAIN*100).toFixed(2)}}</span>
       </div>
-
-      <div *dxTemplate="let cell of 'priceCellTemplate'" [class.inc]="cell.data.Profit > 0" [class.dec]="cell.data.Profit < 0">
-        <span>{{cell.text}}</span>
-      </div>
-
-      <div *dxTemplate="let cell of 'symbolCellTemplate'" [class.inc]="cell.data.Type === 0" [class.dec]="cell.data.Type === 1">
-        <span class="arrow"></span>
-        <span class="current-value">{{cell.text}}</span>
-      </div>
-
-      <div *dxTemplate="let data of 'totalStat'">
-        <div>
-          <span [class.inc]="this.stat.TodayGainReal > 0" [class.dec]="this.stat.TodayGainReal < 0">Real: ${{this.stat.TodayGainReal}} </span>
-          <span [class.inc]="this.stat.TodayGainDemo > 0" [class.dec]="this.stat.TodayGainDemo < 0">Demo: ${{this.stat.TodayGainDemo}} </span>
-          <span>Risk: %{{(this.stat.RISK_PER_DAY*100).toFixed(2)}} %{{(this.stat.DAILY_MIN_GAIN*100).toFixed(2) }} %{{(this.stat.DAILY_LOSS_AFTER_GAIN*100).toFixed(2)}}</span>
-        </div>
-      </div>
+    </div>
 
 
-    </dx-data-grid>
-  </div>
-  <div>
-    <dx-data-grid #dealsContainer id="dealsContainer"
-      [dataSource]="stat.Deals"
-      keyExpr="Ticket"
-      [showRowLines]="true"
-      [columnHidingEnabled]="true"
-      [showColumnLines]="false"
-      [height]="500"
-      [showBorders]="true">
-      <dxo-scrolling mode="virtual"></dxo-scrolling>
-      <dxo-paging [enabled]="false"></dxo-paging>
-      <dxi-column dataField="AccountName" [allowSorting]="true" caption="Account" [width]="180" groupIndex="0"></dxi-column>
-      <dxi-column dataField="CloseTime" [allowSorting]="true" format="datetime" [width]="160" [hidingPriority]="3" sortOrder="desc"></dxi-column>
-      <dxi-column dataField="Ticket" [width]="120" [hidingPriority]="1"></dxi-column>
-      <dxi-column dataField="Symbol" [allowSorting]="true" cellTemplate="symbolDealCellTemplate">
-      </dxi-column>
-      <dxi-column dataField="Lots" format="#0.##" [width]="120" [hidingPriority]="2"></dxi-column>
-      <dxi-column dataField="Profit" [allowSorting]="true" [width]="120" format="#0.##"></dxi-column>
+  </dx-data-grid>
+</div>
+<div>
+  <dx-data-grid #dealsContainer id="dealsContainer" [dataSource]="stat.Deals" keyExpr="Ticket" [showRowLines]="true"
+    [columnHidingEnabled]="true" [showColumnLines]="false" [height]="500" [showBorders]="true">
+    <dxo-scrolling mode="virtual"></dxo-scrolling>
+    <dxo-paging [enabled]="false"></dxo-paging>
+    <dxi-column dataField="AccountName" [allowSorting]="true" caption="Account" [width]="180" groupIndex="0">
+    </dxi-column>
+    <dxi-column dataField="CloseTime" [allowSorting]="true" format="datetime" [width]="160" [hidingPriority]="3"
+      sortOrder="desc"></dxi-column>
+    <dxi-column dataField="Ticket" [width]="120" [hidingPriority]="1"></dxi-column>
+    <dxi-column dataField="Symbol" [allowSorting]="true" cellTemplate="symbolDealCellTemplate">
+    </dxi-column>
+    <dxi-column dataField="Lots" format="#0.##" [width]="120" [hidingPriority]="2"></dxi-column>
+    <dxi-column dataField="Profit" [allowSorting]="true" [width]="120" format="#0.##"></dxi-column>
 
-      <div *dxTemplate="let cell of 'symbolDealCellTemplate'" [class.inc]="cell.data.Type === 1" [class.dec]="cell.data.Type === 0">
-        <span class="arrow"></span>
-        <span class="current-value">{{cell.text}}</span>
-      </div>
-    </dx-data-grid>
+    <div *dxTemplate="let cell of 'symbolDealCellTemplate'" [class.inc]="cell.data.Type === 1"
+      [class.dec]="cell.data.Type === 0">
+      <span class="arrow"></span>
+      <span class="current-value">{{cell.text}}</span>
+    </div>
+  </dx-data-grid>
 
-  </div>
+</div>
