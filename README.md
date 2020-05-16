@@ -1,3 +1,6 @@
+**Current project is already obsolete and evolved into FinCore application where Backend Server and Frontend Client tied together in one .NET Core + Angular application.New application can be downloaded here **
+[FinCore](https://github.com/sergiovision/FinCore)
+
 
 XTrade Web is an Angular web frontend application to manage XTrade Server. 
 It is a web UI Admin console application.
